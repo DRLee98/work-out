@@ -1,0 +1,23 @@
+.form-container {
+  height: 600px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  form {
+    width: 100%;
+    padding: 20px;
+    input {
+      display: block;
+      width: 300px;
+      height: 40px;
+      padding: 0 20px;
+      border: 1px solid rgba(120, 120, 120, 0.2);
+      border-radius: 10px;
+      margin: 0 auto;
+      outline: none;
+      &:not(:last-child) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}

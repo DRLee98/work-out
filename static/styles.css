@@ -3,41 +3,155 @@ html,
 body {
   height: 100%; }
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+body {
+  font-family: "Do Hyeon", sans-serif; }
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 760px;
+  margin: 0 auto; }
+
+.title {
+  font-size: 30px; }
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline; }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block; }
 
 body {
   line-height: 1; }
 
-ol, ul {
+ol,
+ul {
   list-style: none; }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none; }
 
 blockquote:before, blockquote:after {
-  content: '';
+  content: "";
   content: none; }
 
 q:before, q:after {
-  content: '';
+  content: "";
   content: none; }
 
 table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+a {
+  all: unset;
+  color: inherit;
+  cursor: pointer; }
+
+* {
+  box-sizing: border-box; }
+
 .header {
-  font-family: "Do Hyeon", sans-serif;
   padding: 15px;
   display: flex;
   justify-content: space-between;
@@ -62,7 +176,6 @@ table {
         font-size: 20px; }
 
 .footer {
-  font-family: "Do Hyeon", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,4 +188,30 @@ table {
     font-size: 35px; }
   .footer .footer-title {
     font-size: 28px; }
+
+.form-container {
+  height: 600px;
+  width: 500px;
+  display: flex;
+  justify-content: center; }
+  .form-container form {
+    width: 100%;
+    padding: 20px; }
+    .form-container form input {
+      display: block;
+      width: 300px;
+      height: 40px;
+      padding: 0 20px;
+      border: 1px solid rgba(120, 120, 120, 0.2);
+      border-radius: 10px;
+      margin: 0 auto;
+      outline: none; }
+      .form-container form input:not(:last-child) {
+        margin-bottom: 40px; }
+
+.home-container {
+  width: 70vh;
+  min-height: 700px;
+  text-align: center;
+  padding: 15px; }
 

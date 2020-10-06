@@ -2,3 +2,22 @@ html,
 body {
   height: 100%;
 }
+
+body {
+  font-family: "Do Hyeon", sans-serif;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 760px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 30px;
+}
