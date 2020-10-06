@@ -1,0 +1,78 @@
+@import url(https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap);
+html,
+body {
+  height: 100%; }
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.header {
+  font-family: "Do Hyeon", sans-serif;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #2d2d2d;
+  color: whitesmoke; }
+  .header .header-column {
+    display: flex;
+    align-items: center; }
+    .header .header-column .header-title {
+      display: flex;
+      align-items: center;
+      margin: 5px 10px; }
+      .header .header-column .header-title .header-title_icon {
+        font-size: 35px;
+        margin: 0 10px 10px 10px; }
+      .header .header-column .header-title .header-title_text {
+        font-size: 45px; }
+    .header .header-column ul {
+      display: flex; }
+      .header .header-column ul li {
+        margin: 0 8px;
+        font-size: 20px; }
+
+.footer {
+  font-family: "Do Hyeon", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+  background-color: #e5e5e561;
+  border-top: 3px solid #d2d2d245;
+  padding: 40px 0; }
+  .footer .footer-icon {
+    margin-right: 15px;
+    font-size: 35px; }
+  .footer .footer-title {
+    font-size: 28px; }
+
