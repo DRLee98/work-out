@@ -238,9 +238,6 @@ a {
         .work-out_form-container form .work-out-container input[type="number"],
         .work-out_form-container form .work-out-container select[type="number"] {
           width: 120px; }
-        .work-out_form-container form .work-out-container input[type="submit"]:hover,
-        .work-out_form-container form .work-out-container select[type="submit"]:hover {
-          background-color: #e5f9ff; }
 
 form {
   width: 100%; }
@@ -250,6 +247,9 @@ form {
     border: 1px solid rgba(120, 120, 120, 0.2);
     border-radius: 10px;
     outline: none; }
+    form input[type="submit"]:hover,
+    form select[type="submit"]:hover {
+      background-color: #eef3ff6e; }
 
 .home-container {
   width: 70vh;

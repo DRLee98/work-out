@@ -14,7 +14,13 @@ header.header
                 a(href=`/work-out${routes.addWorkOut}`) 운동 추가하기
     .header-column
         ul.user-list
-            li.user-item
-                a(href=routes.login) 로그인
-            li.user-item
-                a(href=routes.join) 회원가입
+            if !user
+                li.user-item
+                    a(href=routes.login) 로그인
+                li.user-item
+                    a(href=routes.join) 회원가입
+            else
+                li.user-item
+                    a(href=`/users/${routes.userDetail()}`) 내 정보
+                li.user-item
+                    a(href=routes.logout) 로그아웃
