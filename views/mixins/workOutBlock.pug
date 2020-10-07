@@ -1,0 +1,10 @@
+mixin workOutBlock(workOut = {})
+    li.workOutBlock
+        .workOutBlock-name=workOut.name
+        .workOutBlock-weight #{workOut.weight > 1 ? `${workOut.weight}kg` : workOut.weight}
+        if workOut.repsOrHold === "reps"
+            .workOutBlock-count #{workOut.count}개
+        else
+            .workOutBlock-count #{workOut.count}초
+        .workOutBlock-set #{workOut.set}세트
+        .workOutBlock-breakTime #{workOut.breakTime / 60 > 1 ? `${workOut.breakTime / 60} : ${workOut.breakTime % 60}` : workOut.breakTime % 60}

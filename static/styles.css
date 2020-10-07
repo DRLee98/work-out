@@ -14,7 +14,8 @@ main {
   width: 100%;
   max-width: 1200px;
   min-height: 760px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 40px 0; }
 
 .title {
   font-size: 30px; }
@@ -195,23 +196,64 @@ a {
   display: flex;
   justify-content: center; }
   .form-container form {
-    width: 100%;
     padding: 20px; }
     .form-container form input {
       display: block;
       width: 300px;
       height: 40px;
-      padding: 0 20px;
-      border: 1px solid rgba(120, 120, 120, 0.2);
-      border-radius: 10px;
-      margin: 0 auto;
-      outline: none; }
+      margin: 0 auto; }
       .form-container form input:not(:last-child) {
         margin-bottom: 40px; }
 
+.work-out_form-container {
+  margin-top: 15px;
+  margin-bottom: auto; }
+  .work-out_form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .work-out_form-container form .day-container {
+      margin: 10px 0;
+      font-size: 18px;
+      display: flex;
+      align-items: center; }
+      .work-out_form-container form .day-container label:not(:last-child) {
+        margin-right: 10px; }
+      .work-out_form-container form .day-container input[type="checkbox"] {
+        width: 15px;
+        height: 15px; }
+    .work-out_form-container form .work-out-container {
+      height: 40px;
+      display: flex;
+      align-items: center; }
+      .work-out_form-container form .work-out-container input,
+      .work-out_form-container form .work-out-container select {
+        height: inherit; }
+        .work-out_form-container form .work-out-container input:not(:last-child),
+        .work-out_form-container form .work-out-container select:not(:last-child) {
+          margin-right: 10px; }
+        .work-out_form-container form .work-out-container input[type="text"],
+        .work-out_form-container form .work-out-container select[type="text"] {
+          width: 250px; }
+        .work-out_form-container form .work-out-container input[type="number"],
+        .work-out_form-container form .work-out-container select[type="number"] {
+          width: 120px; }
+        .work-out_form-container form .work-out-container input[type="submit"]:hover,
+        .work-out_form-container form .work-out-container select[type="submit"]:hover {
+          background-color: #e5f9ff; }
+
+form {
+  width: 100%; }
+  form input,
+  form select {
+    padding: 0 20px;
+    border: 1px solid rgba(120, 120, 120, 0.2);
+    border-radius: 10px;
+    outline: none; }
+
 .home-container {
   width: 70vh;
-  min-height: 700px;
+  min-height: 600px;
   text-align: center;
   padding: 15px; }
 

@@ -7,6 +7,7 @@ import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
+import workOutRouter from "./routers/workOutRouter";
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
+app.use(routes.workOut, workOutRouter);
 
 export default app;

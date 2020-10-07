@@ -11,6 +11,12 @@ const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 
+//Work Out
+const WORKOUT = "/work-out";
+const ADD_WORKOUT = "/add";
+const EDIT_WORKOUT = "/:id/edit";
+const DELETE_WORKOUT = "/:id/delete"
+
 const routes = {
     home: HOME,
     join: JOIN,
@@ -26,7 +32,23 @@ const routes = {
       }
     },
     editProfile: EDIT_PROFILE,
-    changePassword: CHANGE_PASSWORD
+    changePassword: CHANGE_PASSWORD,
+    workOut: WORKOUT,
+    addWorkOut: ADD_WORKOUT,
+    editWorkOut: (id) => {
+      if(id){
+        return `/work-out/${id}/edit`
+      } else {
+        return EDIT_WORKOUT
+      }
+    },
+    deleteWorkOut: (id) => {
+      if(id){
+        return `/work-out/${id}/delete`
+      } else {
+        return DELETE_WORKOUT
+      }
+    }
   };
   
   export default routes;

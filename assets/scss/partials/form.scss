@@ -1,23 +1,74 @@
-.form-container {
+.form-container{
   height: 600px;
   width: 500px;
   display: flex;
   justify-content: center;
-  form {
-    width: 100%;
+  form{
     padding: 20px;
-    input {
+    input{
       display: block;
       width: 300px;
       height: 40px;
-      padding: 0 20px;
-      border: 1px solid rgba(120, 120, 120, 0.2);
-      border-radius: 10px;
       margin: 0 auto;
-      outline: none;
       &:not(:last-child) {
         margin-bottom: 40px;
       }
     }
   }
 }
+
+.work-out_form-container {
+  margin-top: 15px;
+  margin-bottom: auto;
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .day-container{
+      margin: 10px 0;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      label:not(:last-child){
+        margin-right: 10px;
+      }
+      input[type="checkbox"]{
+        width: 15px;
+        height: 15px;
+      }
+    }
+    .work-out-container{
+      height: 40px;
+      display: flex;
+      align-items: center;
+      input,
+      select{
+        height: inherit;
+        &:not(:last-child){
+          margin-right: 10px;
+        }
+        &[type="text"]{
+          width: 250px;
+        }
+        &[type="number"]{
+          width: 120px;
+        }
+        &[type="submit"]:hover{
+         background-color: #e5f9ff;
+        }
+      }
+    }
+  }
+}
+
+form {
+  width: 100%;
+  input,
+  select {
+    padding: 0 20px;
+    border: 1px solid rgba(120, 120, 120, 0.2);
+    border-radius: 10px;
+    outline: none;
+  }
+}
+
