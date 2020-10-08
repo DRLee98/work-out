@@ -35,12 +35,14 @@ export const getLogin = (req, res) => {
 };
 
 export const postLogin = passport.authenticate("local", {
-  failureRedirect: routes.login,
   successRedirect: routes.home,
+  failureRedirect: routes.login,
+  failureFlash: true,
 });
 
 export const logout = (req, res) => {
-  res.render("logout");
+  req.logout();
+  res.redirect(routes.home);
 };
 
 export const userDetail = (req, res) => {

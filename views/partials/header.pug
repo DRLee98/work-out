@@ -8,10 +8,11 @@ header.header
             .header-title_icon
                 i.fas.fa-quote-right
         ul.header-list
-            li.header-item
-                a 요일별 운동
-            li.header-item
-                a(href=`/work-out${routes.addWorkOut}`) 운동 추가하기
+            if user
+                li.header-item
+                    a 요일별 운동
+                li.header-item
+                    a(href=`/work-out${routes.addWorkOut}`) 운동 추가하기
     .header-column
         ul.user-list
             if !user
@@ -21,6 +22,8 @@ header.header
                     a(href=routes.join) 회원가입
             else
                 li.user-item
-                    a(href=`/users/${routes.userDetail()}`) 내 정보
+                    span=`${user.name} 님`
+                li.user-item
+                    a(href=routes.userDetail(user._id)) 내 정보
                 li.user-item
                     a(href=routes.logout) 로그아웃
