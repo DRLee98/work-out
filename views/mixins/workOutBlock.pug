@@ -1,10 +1,10 @@
 mixin workOutBlock(workOut = {})
     li.workOutBlock
-        .workOutBlock-name=workOut.name
-        .workOutBlock-weight #{workOut.weight > 1 ? `${workOut.weight}kg` : workOut.weight}
+        span.workOutBlock-name=workOut.name
+        span.workOutBlock-weight #{workOut.weight > 1 ? `${workOut.weight}kg` : ""}
         if workOut.repsOrHold === "reps"
-            .workOutBlock-count #{workOut.count}개
+            span.workOutBlock-count #{workOut.count}개
         else
-            .workOutBlock-count #{workOut.count}초
-        .workOutBlock-set #{workOut.set}세트
-        .workOutBlock-breakTime #{workOut.breakTime / 60 > 1 ? `${workOut.breakTime / 60} : ${workOut.breakTime % 60}` : workOut.breakTime % 60}
+            span.workOutBlock-count #{workOut.count}초
+        span.workOutBlock-set #{workOut.set}세트
+        span.workOutBlock-breakTime #{workOut.breakTime / 60 >= 1 ? `${Math.floor(workOut.breakTime / 60)} : ${workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}` : workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}

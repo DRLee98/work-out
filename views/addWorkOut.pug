@@ -1,9 +1,10 @@
 extends layouts/main
+include mixins/daysBlock
 
 block content
     .work-out_form-container
-        form(action=`/work-out${routes.addWorkOut}`, method="post")
-            .day-container 
+        form.add_work-out#jsAddWorkOut
+            .day-select-container#jsDaySelect
                 input(type="checkbox", name="day" value="mon") 
                 label 월요일
                 input(type="checkbox", name="day" value="tue") 
@@ -18,14 +19,18 @@ block content
                 label 토요일
                 input(type="checkbox", name="day" value="sun") 
                 label 일요일
-            .work-out-container
+            .work-out-container#jsWorkOutInput
                 input(type="text", name="name", placeholder="이름", required=true)
-                input(type="number", name="weight", placeholder="중량")
+                input(type="number", name="weight", placeholder="중량", min="0")
                 select(name="repsOrHold")
                     option(value="reps") 개수
                     option(value="hold") 버티기
-                input(type="number", name="count", placeholder="횟수", required=true)
-                input(type="number", name="set", placeholder="세트", required=true)
-                input(type="number", name="breakTime", placeholder="쉬는 시간")
+                input(type="number", name="count", placeholder="횟수", required=true, min="0")
+                input(type="number", name="set", placeholder="세트", required=true, min="0")
+                input(type="number", name="breakTime", placeholder="쉬는 시간", min="0")
                 input(type="submit", value="추가하기")
-            
+    each item in days
+        +daysBlock({
+            day: item.day,
+            workOuts: item.workOuts
+        })

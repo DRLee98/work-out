@@ -13,10 +13,10 @@ const DaySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  workOut: {
+  workOuts: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "WorkOut",
-  }
+  }]
 });
 
 const model = mongoose.model("Day", DaySchema);

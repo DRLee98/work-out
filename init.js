@@ -5,6 +5,8 @@ import app from "./app";
 dotenv.config();
 
 import "./models/User";
+import "./models/Day";
+import "./models/WorkOut";
 
 const PORT = process.env.PORT || 4000;
 
