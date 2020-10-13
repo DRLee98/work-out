@@ -3,8 +3,6 @@ include mixins/daysBlock
 
 block content
     section.dayWorkOut-container
-        each item in days
-            +daysBlock({
-                day: item.day,
-                workOuts: item.workOuts
-            })
+        +daysBlock({
+            days: days
+        })

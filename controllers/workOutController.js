@@ -10,7 +10,6 @@ export const getDayWorkOut = async (req, res) => {
 
 export const getAddWorkOut = async (req, res) => {
   const days = await Day.find({ creator: req.user.id}).populate("workOuts");
-  console.log(days);
   res.render("addWorkOut", { pageTitle: "운동 추가하기", days });
 };
 

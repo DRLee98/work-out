@@ -29,11 +29,17 @@
 }
 
 .work-out_form-container {
-  margin: 15px 0;
+  margin-top: 15px;
+  margin-bottom: auto;
   form {
+    position: sticky;
+    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+    background-color: white;
+    z-index: 1;
     .day-select-container {
       margin: 10px 0;
       font-size: 18px;

@@ -2,18 +2,15 @@ const Btns = document.querySelectorAll("#jsDayBtn");
 
 const handleBtn = (e) => {
   const {
-    target: {
-      parentNode: { parentNode: day },
-    },
+    target: { parentNode: day }
   } = e;
   if (!day.classList.contains("close")) {
     day.classList.add("close");
-    e.target = "<i class='fas fa-plus'></i>";
+    e.target.className = "fas fa-plus";
   } else {
     day.classList.remove("close");
-    e.target = "<i class='fas fa-plus'></i>";
+    e.target.className = "fas fa-minus";
   }
-  console.dir(e.target);
 };
 
 const init = () => {

@@ -2,26 +2,11 @@ include workOutBlock
 
 mixin daysBlock(days = {})
     article.day-container
-        each day in days
-            if day.day === "mon"
-                ul.mon.day#jsDay
-                    .day-btn#jsDayBtn
-                        i.fas.fa-minus
-                    h3 월요일
-                    each item in days.workOuts
-                        +workOutBlock({
-                            name: item.name,
-                            weight: item.weight,
-                            repsOrHold: item.repsOrHold,
-                            count: item.count,
-                            set: item.set,
-                            breakTime: item.breakTime
-                        })
-            if day.day === "tue"
-                ul.tue.day#jsDay
-                    .day-btn#jsDayBtn
-                        i.fas.fa-minus
-                    h3 화요일
+        ul.mon.day#jsDay
+            i.fas.fa-minus#jsDayBtn
+            h3 월요일
+            each day in days.days
+                if day.day === "mon"
                     each item in day.workOuts
                         +workOutBlock({
                             name: item.name,
@@ -31,11 +16,25 @@ mixin daysBlock(days = {})
                             set: item.set,
                             breakTime: item.breakTime
                         })
-            if day.day === "wed"
-                ul.wed.day#jsDay
-                    .day-btn#jsDayBtn
-                        i.fas.fa-minus
-                    h3 수요일
+        ul.tue.day#jsDay
+            i.fas.fa-minus#jsDayBtn
+            h3 화요일
+            each day in days.days
+                if day.day === "tue"
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime
+                        })
+        ul.wed.day#jsDay
+            i.fas.fa-minus#jsDayBtn
+            h3 수요일
+            each day in days.days
+                if day.day === "wed"
                     each item in day.workOuts
                         +workOutBlock({
                             name: item.name,
@@ -46,58 +45,58 @@ mixin daysBlock(days = {})
                             breakTime: item.breakTime
                         })
         ul.thu.day#jsDay
-            .day-btn#jsDayBtn
-                i.fas.fa-minus
+            i.fas.fa-minus#jsDayBtn
             h3 목요일
-            if day.day === "thu"
-                each item in day.workOuts
-                    +workOutBlock({
-                        name: item.name,
-                        weight: item.weight,
-                        repsOrHold: item.repsOrHold,
-                        count: item.count,
-                        set: item.set,
-                        breakTime: item.breakTime
-                    })
+            each day in days.days
+                if day.day === "thu"
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime
+                        })
         ul.fri.day#jsDay
-            .day-btn#jsDayBtn
-                i.fas.fa-minus
+            i.fas.fa-minus#jsDayBtn
             h3 금요일
-            if day.day === "fri"
-                each item in day.workOuts
-                    +workOutBlock({
-                        name: item.name,
-                        weight: item.weight,
-                        repsOrHold: item.repsOrHold,
-                        count: item.count,
-                        set: item.set,
-                        breakTime: item.breakTime
-                    })
+            each day in days.days
+                if day.day === "fri"
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime
+                        })
         ul.sat.day#jsDay
-            .day-btn#jsDayBtn
-                i.fas.fa-minus
+            i.fas.fa-minus#jsDayBtn
             h3 토요일
-            if day.day === "sat"
-                each item in day.workOuts
-                    +workOutBlock({
-                        name: item.name,
-                        weight: item.weight,
-                        repsOrHold: item.repsOrHold,
-                        count: item.count,
-                        set: item.set,
-                        breakTime: item.breakTime
-                    })
+            each day in days.days
+                if day.day === "sat"
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime
+                        })
         ul.sun.day#jsDay
-            .day-btn#jsDayBtn
-                i.fas.fa-minus
+            i.fas.fa-minus#jsDayBtn
             h3 일요일
-            if day.day === "sun"
-                each item in day.workOuts
-                    +workOutBlock({
-                        name: item.name,
-                        weight: item.weight,
-                        repsOrHold: item.repsOrHold,
-                        count: item.count,
-                        set: item.set,
-                        breakTime: item.breakTime
-                    })
+            each day in days.days
+                if day.day === "sun"
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime
+                        })
