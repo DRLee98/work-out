@@ -1,0 +1,9 @@
+.errorMsg {
+  &.password,
+  &.email {
+    bottom: 250px;
+  }
+  &.login {
+    top: 160px;
+  }
+}

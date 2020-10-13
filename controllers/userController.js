@@ -10,15 +10,22 @@ export const postJoin = async (req, res, next) => {
   const {
     body: { name, email, password, password2 },
   } = req;
+  let user = await User.findOne({email})
   if (password !== password2) {
     res.status(400);
     res.render("join", {
       pageTitle: "회원가입",
-      error: "비밀번호가 일치하지 않습니다.",
+      passwordError: "비밀번호가 일치하지 않습니다.",
+    });
+  } else if(user) {
+    res.status(400);
+    res.render("join", {
+      pageTitle: "회원가입",
+      emailError: "이미 가입된 이메일입니다.",
     });
   } else {
     try {
-      const user = await User({
+      user = await User({
         name,
         email,
       });
@@ -31,13 +38,14 @@ export const postJoin = async (req, res, next) => {
 };
 
 export const getLogin = (req, res) => {
-  res.render("login", { pageTitle: "로그인" });
+  const error = req.flash().error
+  res.render("login", { pageTitle: "로그인", error });
 };
 
 export const postLogin = passport.authenticate("local", {
   successRedirect: routes.home,
   failureRedirect: routes.login,
-  failureFlash: true,
+  failureFlash: true
 });
 
 export const logout = (req, res) => {
@@ -45,8 +53,10 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const userDetail = (req, res) => {
-  res.render("userDetail", { pageTitle: "회원정보" });
+export const userDetail = async (req, res) => {
+  const { user: {id} } =req
+  const user = await User.findById({_id: id})
+  res.render("userDetail", { pageTitle: "회원정보", user});
 };
 
 export const editProfile = (req, res) => {

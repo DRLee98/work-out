@@ -10,7 +10,7 @@ header.header
         ul.header-list
             if user
                 li.header-item
-                    a 요일별 운동
+                    a(href=`/work-out${routes.day}`) 요일별 운동
                 li.header-item
                     a(href=`/work-out${routes.addWorkOut}`) 운동 추가하기
     .header-column

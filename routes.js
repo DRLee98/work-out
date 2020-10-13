@@ -13,6 +13,7 @@ const CHANGE_PASSWORD = "/change-password";
 
 //Work Out
 const WORKOUT = "/work-out";
+const DAY = "/day";
 const ADD_WORKOUT = "/add";
 const EDIT_WORKOUT = "/:id/edit";
 const DELETE_WORKOUT = "/:id/delete"
@@ -34,6 +35,7 @@ const routes = {
     editProfile: EDIT_PROFILE,
     changePassword: CHANGE_PASSWORD,
     workOut: WORKOUT,
+    day: DAY,
     addWorkOut: ADD_WORKOUT,
     editWorkOut: (id) => {
       if(id){

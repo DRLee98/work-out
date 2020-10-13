@@ -3,11 +3,14 @@ import {
   getAddWorkOut,
   postAddWorkOut,
   editWorkOut,
+  getDayWorkOut,
 } from "../controllers/workOutController";
 import { onlyPrivate } from "../middlewares";
 import routes from "../routes";
 
 const workOutRouter = express.Router();
+
+workOutRouter.get(routes.day, onlyPrivate, getDayWorkOut);
 
 workOutRouter.get(routes.addWorkOut, onlyPrivate, getAddWorkOut);
 workOutRouter.post(routes.addWorkOut, onlyPrivate, postAddWorkOut);
