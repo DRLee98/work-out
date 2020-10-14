@@ -63,6 +63,22 @@ export const editProfile = (req, res) => {
   res.render("editProfile", { pageTitle: "회원정보 수정" });
 };
 
-export const changePassword = (req, res) => {
+export const getChangePassword = (req, res) => {
   res.render("changePassword", { pageTitle: "비밀번호 변경" });
 };
+
+export const  postChangePassword = async (req, res) => {
+  const {
+    body: { oldPassword, newPassword, newPassword2 }
+  } = req;
+  try{
+    if(newPassword !== newPassword2){
+      res.status(400);
+      return res.render("changePassword", { pageTitle: "비밀번호 변경", error: "새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다." });
+    }
+    await req.user.changePassword(oldPassword, newPassword);
+  }catch(error){
+    res.status(400);
+    return res.render("changePassword", { pageTitle: "비밀번호 변경", error: "기존 비밀번호가 일치하지 않습니다." });
+  }
+}
