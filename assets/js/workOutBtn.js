@@ -2,7 +2,7 @@ const Btns = document.querySelectorAll("#jsExpanBtn");
 
 const handleBtn = (e) => {
   const {
-    target: { parentNode: day }
+    target: { offsetParent: { parentNode: day } }
   } = e;
   if (!day.classList.contains("close")) {
     day.classList.add("close");
@@ -11,6 +11,7 @@ const handleBtn = (e) => {
     day.classList.remove("close");
     e.target.className = "fas fa-minus";
   }
+  console.dir(e.target)
 };
 
 const init = () => {

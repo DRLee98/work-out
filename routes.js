@@ -14,10 +14,14 @@ const CHANGE_PASSWORD = "/change-password";
 //Work Out
 const WORKOUT = "/work-out";
 const DAY = "/day";
-const ADD_WORKOUT = "/add";
+const ADD = "/add";
 const EDIT_DAY = "/:id/day-edit";
-const EDIT_WORKOUT = "/:id/edit";
 const DELETE_WORKOUT = "/:id/delete"
+
+//API
+const API = "/api";
+const ADD_WORKOUT = "/add-item";
+const EDIT_WORKOUT = "/:id/edit";
 
 const routes = {
     home: HOME,
@@ -37,19 +41,12 @@ const routes = {
     changePassword: CHANGE_PASSWORD,
     workOut: WORKOUT,
     day: DAY,
-    addWorkOut: ADD_WORKOUT,
+    add: ADD,
     editDay: (id) => {
       if(id){
         return `/work-out/${id}/day-edit`
       } else {
-        return EDIT_WORKOUT
-      }
-    },
-    editWorkOut: (id) => {
-      if(id){
-        return `/work-out/${id}/edit`
-      } else {
-        return EDIT_WORKOUT
+        return EDIT_DAY
       }
     },
     deleteWorkOut: (id) => {
@@ -58,7 +55,10 @@ const routes = {
       } else {
         return DELETE_WORKOUT
       }
-    }
+    },
+    api: API,
+    addWorkOut: ADD_WORKOUT,
+    editWorkOut: EDIT_WORKOUT
   };
   
   export default routes;

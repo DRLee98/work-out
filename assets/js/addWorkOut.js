@@ -27,14 +27,14 @@ const addWorkOut = (workOut, box) => {
       ? `${workOut[3].value}개`
       : `${workOut[3].value}초`;
   set.innerText = `${workOut[4].value}세트`;
-  breakTime.innerText = `${workOut[5].value}초`;
+  breakTime.innerText = workOut[5].value / 60 >= 1 ? `${Math.floor(workOut[5].value / 60)} : ${workOut[5].value % 60 < 10 ? `0${workOut[5].value % 60}` : workOut[5].value % 60}` : workOut[5].value % 60 < 10 ? `0${workOut[5].value % 60}` : workOut[5].value % 60
   li.append(name, weight, count, set, breakTime);
   box.append(li);
 };
 
 const sendWorkOut = async (workOut, day, dayBox) => {
   const response = await axios({
-    url: "/work-out/add",
+    url: "/api/add-item",
     method: "POST",
     data: {
       day,

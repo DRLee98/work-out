@@ -8,7 +8,8 @@ export const getDayWorkOut = async (req, res) => {
   res.render("dayWorkOut", { pageTitle: "요일별 운동", days });
 }
 
-export const getAddWorkOut = async (req, res) => {
+// Add Controller
+export const getAdd = async (req, res) => {
   const days = await Day.find({ creator: req.user.id}).populate("workOuts");
   res.render("addWorkOut", { pageTitle: "운동 추가하기", days });
 };
@@ -41,6 +42,7 @@ export const postAddWorkOut = async (req, res) => {
   }
 };
 
+// Edit Controller
 export const getEditDay = async (req, res) => {
   const {
     params: { id }
@@ -53,14 +55,11 @@ export const postEditDay = (req, res) => {
 
 }
 
-export const getEditWorkOut = (req, res) => {
-  res.send("edit")
-}
-
 export const postEditWorkOut = (req, res) => {
 
 }
 
+// Delete Controller
 export const deleteWorkOut = (req, res) => {
   //운동 삭제
 };

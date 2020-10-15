@@ -9,6 +9,21 @@ mixin workOutBlock(workOut = {})
         span.workOut-set #{workOut.set}세트
         span.workOut-breakTime #{workOut.breakTime / 60 >= 1 ? `${Math.floor(workOut.breakTime / 60)} : ${workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}` : workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}
         .workOutBtns
-            span.workOut.editBtn
-                a(href=routes.editWorkOut(workOut.id))
-                    i.fas.fa-edit
+            span.editBtn
+                i.fas.fa-edit
+        form.edit_work-out#jsEditWorkOut
+            input(type="text", name="name", value=workOut.name ,placeholder="이름", required=true)
+            input(type="number", name="weight", value=workOut.weight ,placeholder="중량", min="0")
+            select(name="repsOrHold")
+                if workOut.repsOrHold === "reps"
+                    option(value="reps", selected) 개수
+                    option(value="hold") 버티기
+                else
+                    option(value="reps") 개수
+                    option(value="hold", selected) 버티기
+            input(type="number", name="count", value=workOut.count ,placeholder="횟수", required=true, min="0")
+            input(type="number", name="set", value=workOut.set ,placeholder="세트", required=true, min="0")
+            input(type="number", name="breakTime", value=workOut.breakTime ,placeholder="쉬는 시간", min="0")
+            input(type="submit", value="수정하기")
+
+

@@ -13,6 +13,7 @@ import routes from "./routes";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import workOutRouter from "./routers/workOutRouter";
+import apiRouter from "./routers/apiRouter";
 
 import "./passport";
 
@@ -45,5 +46,6 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.workOut, workOutRouter);
+app.use(routes.api, apiRouter);
 
 export default app;

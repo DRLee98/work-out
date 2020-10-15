@@ -7,10 +7,10 @@ mixin daysBlock(days = {})
             each day in days.days
                 if day.day === "mon"
                     .dayBtns
-                        span.day.editBtn
+                        span.editBtn
                             a(href=routes.editDay(day.id))
                                 i.fas.fa-edit
-                        span.day.expandBtn
+                        span.expandBtn
                             i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
@@ -27,10 +27,10 @@ mixin daysBlock(days = {})
             each day in days.days
                 if day.day === "tue"
                     .dayBtns
-                        span.day.editBtn
+                        span.editBtn
                             a(href=routes.editDay(day.id))
                                 i.fas.fa-edit
-                        span.day.expandBtn
+                        span.expandBtn
                             i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
@@ -47,10 +47,10 @@ mixin daysBlock(days = {})
             each day in days.days
                 if day.day === "wed"
                     .dayBtns
-                        span.day.editBtn
+                        span.editBtn
                             a(href=routes.editDay(day.id))
                                 i.fas.fa-edit
-                        span.day.expandBtn
+                        span.expandBtn
                             i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
@@ -67,10 +67,10 @@ mixin daysBlock(days = {})
             each day in days.days
                 if day.day === "thu"
                     .dayBtns
-                        span.day.editBtn
+                        span.editBtn
                             a(href=routes.editDay(day.id))
                                 i.fas.fa-edit
-                        span.day.expandBtn
+                        span.expandBtn
                             i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
@@ -87,10 +87,10 @@ mixin daysBlock(days = {})
             each day in days.days
                 if day.day === "fri"
                     .dayBtns
-                        span.day.editBtn
+                        span.editBtn
                             a(href=routes.editDay(day.id))
                                 i.fas.fa-edit
-                        span.day.expandBtn
+                        span.expandBtn
                             i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
@@ -107,10 +107,10 @@ mixin daysBlock(days = {})
             each day in days.days
                 if day.day === "sat"
                     .dayBtns
-                        span.day.editBtn
+                        span.editBtn
                             a(href=routes.editDay(day.id))
                                 i.fas.fa-edit
-                        span.day.expandBtn
+                        span.expandBtn
                             i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
@@ -127,10 +127,10 @@ mixin daysBlock(days = {})
             each day in days.days
                 if day.day === "sun"
                     .dayBtns
-                        span.day.editBtn
+                        span.editBtn
                             a(href=routes.editDay(day.id))
                                 i.fas.fa-edit
-                        span.day.expandBtn
+                        span.expandBtn
                             i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
