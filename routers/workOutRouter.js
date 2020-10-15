@@ -1,9 +1,13 @@
 import express from "express";
 import {
+  getDayWorkOut,
   getAddWorkOut,
   postAddWorkOut,
-  editWorkOut,
-  getDayWorkOut,
+  getEditDay,
+  postEditDay,
+  getEditWorkOut,
+  postEditWorkOut,
+
 } from "../controllers/workOutController";
 import { onlyPrivate } from "../middlewares";
 import routes from "../routes";
@@ -15,7 +19,11 @@ workOutRouter.get(routes.day, onlyPrivate, getDayWorkOut);
 workOutRouter.get(routes.addWorkOut, onlyPrivate, getAddWorkOut);
 workOutRouter.post(routes.addWorkOut, onlyPrivate, postAddWorkOut);
 
-workOutRouter.get(routes.editWorkOut(), onlyPrivate, editWorkOut);
+workOutRouter.get(routes.editDay(), onlyPrivate, getEditDay);
+workOutRouter.post(routes.editDay(), onlyPrivate, postEditDay);
+
+workOutRouter.get(routes.editWorkOut(), onlyPrivate, getEditWorkOut);
+workOutRouter.post(routes.editWorkOut(), onlyPrivate, postEditWorkOut);
 
 workOutRouter.post(routes.deleteWorkOut(), onlyPrivate);
 

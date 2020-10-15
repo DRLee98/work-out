@@ -41,9 +41,25 @@ export const postAddWorkOut = async (req, res) => {
   }
 };
 
-export const editWorkOut = (req, res) => {
-  res.render("editWorkOut", { pageTitle: "운동 수정하기" });
+export const getEditDay = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  const days = await Day.findById(id).populate("workOuts");
+  res.render("editWorkOut", { pageTitle: "운동 수정하기", days });
 };
+
+export const postEditDay = (req, res) => {
+
+}
+
+export const getEditWorkOut = (req, res) => {
+  res.send("edit")
+}
+
+export const postEditWorkOut = (req, res) => {
+
+}
 
 export const deleteWorkOut = (req, res) => {
   //운동 삭제

@@ -1,10 +1,14 @@
 mixin workOutBlock(workOut = {})
-    li.workOutBlock
-        span.workOutBlock-name=workOut.name
-        span.workOutBlock-weight #{workOut.weight > 1 ? `${workOut.weight}kg` : ""}
+    li.workOut
+        span.workOut-name=workOut.name
+        span.workOut-weight #{workOut.weight > 1 ? `${workOut.weight}kg` : ""}
         if workOut.repsOrHold === "reps"
-            span.workOutBlock-count #{workOut.count}개
+            span.workOut-count #{workOut.count}개
         else
-            span.workOutBlock-count #{workOut.count}초
-        span.workOutBlock-set #{workOut.set}세트
-        span.workOutBlock-breakTime #{workOut.breakTime / 60 >= 1 ? `${Math.floor(workOut.breakTime / 60)} : ${workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}` : workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}
+            span.workOut-count #{workOut.count}초
+        span.workOut-set #{workOut.set}세트
+        span.workOut-breakTime #{workOut.breakTime / 60 >= 1 ? `${Math.floor(workOut.breakTime / 60)} : ${workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}` : workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}
+        .workOutBtns
+            span.workOut.editBtn
+                a(href=routes.editWorkOut(workOut.id))
+                    i.fas.fa-edit

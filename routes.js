@@ -15,6 +15,7 @@ const CHANGE_PASSWORD = "/change-password";
 const WORKOUT = "/work-out";
 const DAY = "/day";
 const ADD_WORKOUT = "/add";
+const EDIT_DAY = "/:id/day-edit";
 const EDIT_WORKOUT = "/:id/edit";
 const DELETE_WORKOUT = "/:id/delete"
 
@@ -37,6 +38,13 @@ const routes = {
     workOut: WORKOUT,
     day: DAY,
     addWorkOut: ADD_WORKOUT,
+    editDay: (id) => {
+      if(id){
+        return `/work-out/${id}/day-edit`
+      } else {
+        return EDIT_WORKOUT
+      }
+    },
     editWorkOut: (id) => {
       if(id){
         return `/work-out/${id}/edit`

@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 
-@import 'main.scss';
+@import "main.scss";
 
-@import './config/reset.scss';
+@import "./config/reset.scss";
 
-@import './partials/header.scss';
-@import './partials/footer.scss';
-@import './partials/form.scss';
-@import './partials/workOut.scss';
-@import './partials/errorMsg.scss';
+@import "./partials/header.scss";
+@import "./partials/footer.scss";
+@import "./partials/form.scss";
+@import "./partials/workOut.scss";
+@import "./partials/errorMsg.scss";
 
-@import './pages/home.scss';
-@import './pages/dayWorkOut.scss';
-@import './pages/userDetail.scss';
+@import "./pages/home.scss";
+@import "./pages/dayWorkOut.scss";
+@import "./pages/userDetail.scss";
+@import "./pages/editWorkOut.scss";

@@ -17,35 +17,46 @@
     &:not(:first-child) {
       border-top: 2px solid #d2d2d245;
     }
-    i {
-      position: absolute;
-      right: 20px;
-      top: 0;
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+  }
+}
+
+.workOut {
+  font-size: 18px;
+  margin: 3px 0;
+  &:first-of-type {
+    margin-top: 20px;
+  }
+  span {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+    &:nth-child(1) {
+      width: 180px;
+      text-align: left;
     }
-    h3 {
-      font-size: 22px;
-    }
-    li {
-      font-size: 18px;
-      margin: 3px 0;
-      &:first-of-type {
-        margin-top: 20px;
-      }
-      span {
-        display: inline-block;
-        width: 80px;
-        text-align: right;
-        &:nth-child(1) {
-          width: 180px;
-          text-align: left;
-        }
-      }
-    }
+  }
+  .editBtn {
+    display: none;
+  }
+}
+
+.dayBtns,
+.workOutBtns {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  width: 84px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  i {
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

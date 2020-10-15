@@ -3,10 +3,15 @@ include workOutBlock
 mixin daysBlock(days = {})
     article.day-container
         ul.mon.day#jsDay
-            i.fas.fa-minus#jsDayBtn
             h3 월요일
             each day in days.days
                 if day.day === "mon"
+                    .dayBtns
+                        span.day.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.day.expandBtn
+                            i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
                             name: item.name,
@@ -14,13 +19,19 @@ mixin daysBlock(days = {})
                             repsOrHold: item.repsOrHold,
                             count: item.count,
                             set: item.set,
-                            breakTime: item.breakTime
+                            breakTime: item.breakTime,
+                            id: item.id
                         })
         ul.tue.day#jsDay
-            i.fas.fa-minus#jsDayBtn
             h3 화요일
             each day in days.days
                 if day.day === "tue"
+                    .dayBtns
+                        span.day.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.day.expandBtn
+                            i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
                             name: item.name,
@@ -28,13 +39,19 @@ mixin daysBlock(days = {})
                             repsOrHold: item.repsOrHold,
                             count: item.count,
                             set: item.set,
-                            breakTime: item.breakTime
+                            breakTime: item.breakTime,
+                            id: item.id
                         })
         ul.wed.day#jsDay
-            i.fas.fa-minus#jsDayBtn
             h3 수요일
             each day in days.days
                 if day.day === "wed"
+                    .dayBtns
+                        span.day.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.day.expandBtn
+                            i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
                             name: item.name,
@@ -42,13 +59,19 @@ mixin daysBlock(days = {})
                             repsOrHold: item.repsOrHold,
                             count: item.count,
                             set: item.set,
-                            breakTime: item.breakTime
+                            breakTime: item.breakTime,
+                            id: item.id
                         })
         ul.thu.day#jsDay
-            i.fas.fa-minus#jsDayBtn
             h3 목요일
             each day in days.days
                 if day.day === "thu"
+                    .dayBtns
+                        span.day.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.day.expandBtn
+                            i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
                             name: item.name,
@@ -56,13 +79,19 @@ mixin daysBlock(days = {})
                             repsOrHold: item.repsOrHold,
                             count: item.count,
                             set: item.set,
-                            breakTime: item.breakTime
+                            breakTime: item.breakTime,
+                            id: item.id
                         })
         ul.fri.day#jsDay
-            i.fas.fa-minus#jsDayBtn
             h3 금요일
             each day in days.days
                 if day.day === "fri"
+                    .dayBtns
+                        span.day.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.day.expandBtn
+                            i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
                             name: item.name,
@@ -70,13 +99,19 @@ mixin daysBlock(days = {})
                             repsOrHold: item.repsOrHold,
                             count: item.count,
                             set: item.set,
-                            breakTime: item.breakTime
+                            breakTime: item.breakTime,
+                            id: item.id
                         })
         ul.sat.day#jsDay
-            i.fas.fa-minus#jsDayBtn
             h3 토요일
             each day in days.days
                 if day.day === "sat"
+                    .dayBtns
+                        span.day.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.day.expandBtn
+                            i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
                             name: item.name,
@@ -84,13 +119,19 @@ mixin daysBlock(days = {})
                             repsOrHold: item.repsOrHold,
                             count: item.count,
                             set: item.set,
-                            breakTime: item.breakTime
+                            breakTime: item.breakTime,
+                            id: item.id
                         })
         ul.sun.day#jsDay
-            i.fas.fa-minus#jsDayBtn
             h3 일요일
             each day in days.days
                 if day.day === "sun"
+                    .dayBtns
+                        span.day.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.day.expandBtn
+                            i.fas.fa-minus#jsExpanBtn
                     each item in day.workOuts
                         +workOutBlock({
                             name: item.name,
@@ -98,5 +139,6 @@ mixin daysBlock(days = {})
                             repsOrHold: item.repsOrHold,
                             count: item.count,
                             set: item.set,
-                            breakTime: item.breakTime
+                            breakTime: item.breakTime,
+                            id: item.id
                         })

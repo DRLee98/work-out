@@ -1,4 +1,4 @@
-const Btns = document.querySelectorAll("#jsDayBtn");
+const Btns = document.querySelectorAll("#jsExpanBtn");
 
 const handleBtn = (e) => {
   const {
