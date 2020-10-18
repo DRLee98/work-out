@@ -4,7 +4,6 @@ import {
   getAdd,
   getEditDay,
   postEditDay
-
 } from "../controllers/workOutController";
 import { onlyPrivate } from "../middlewares";
 import routes from "../routes";
@@ -17,7 +16,5 @@ workOutRouter.get(routes.add, onlyPrivate, getAdd);
 
 workOutRouter.get(routes.editDay(), onlyPrivate, getEditDay);
 workOutRouter.post(routes.editDay(), onlyPrivate, postEditDay);
-
-workOutRouter.post(routes.deleteWorkOut(), onlyPrivate);
 
 export default workOutRouter;

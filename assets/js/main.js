@@ -1,3 +1,6 @@
 import "../scss/styles.scss";
+import "./expandWorkOut";
 import "./addWorkOut";
-import "./workOutBtn";
+import "./editWorkOut";
+import "./deleteWorkOut";
+import "./workOutOrderChange";

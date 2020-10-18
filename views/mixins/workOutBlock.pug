@@ -1,5 +1,5 @@
 mixin workOutBlock(workOut = {})
-    li.workOut
+    li.workOut(id=workOut.id)
         span.workOut-name=workOut.name
         span.workOut-weight #{workOut.weight > 1 ? `${workOut.weight}kg` : ""}
         if workOut.repsOrHold === "reps"
@@ -9,8 +9,14 @@ mixin workOutBlock(workOut = {})
         span.workOut-set #{workOut.set}세트
         span.workOut-breakTime #{workOut.breakTime / 60 >= 1 ? `${Math.floor(workOut.breakTime / 60)} : ${workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}` : workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}
         .workOutBtns
-            span.editBtn
+            .editBtn#jsEditBtn
                 i.fas.fa-edit
+            .deleteBtn#jsDeleteBtn
+                i.fas.fa-times
+            .upBtn#jsUpBtn
+                i.fas.fa-angle-up
+            .downBtn#jsDownBtn
+                i.fas.fa-angle-down
         form.edit_work-out#jsEditWorkOut
             input(type="text", name="name", value=workOut.name ,placeholder="이름", required=true)
             input(type="number", name="weight", value=workOut.weight ,placeholder="중량", min="0")

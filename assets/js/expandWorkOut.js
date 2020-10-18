@@ -1,6 +1,6 @@
-const Btns = document.querySelectorAll("#jsExpanBtn");
+const expandBtns = document.querySelectorAll("#jsExpandBtn");
 
-const handleBtn = (e) => {
+const handleExpandBtn = (e) => {
   const {
     target: { offsetParent: { parentNode: day } }
   } = e;
@@ -11,13 +11,12 @@ const handleBtn = (e) => {
     day.classList.remove("close");
     e.target.className = "fas fa-minus";
   }
-  console.dir(e.target)
 };
 
-const init = () => {
-  Btns.forEach((b) => b.addEventListener("click", handleBtn));
+function init(){
+  expandBtns.forEach((b) => b.addEventListener("click", handleExpandBtn));
 };
 
-if (Btns) {
+if (expandBtns) {
   init();
 }

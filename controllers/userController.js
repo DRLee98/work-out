@@ -55,7 +55,7 @@ export const logout = (req, res) => {
 
 export const userDetail = async (req, res) => {
   const { user: {id} } =req
-  const user = await User.findById({_id: id})
+  const user = await User.findById(id)
   res.render("userDetail", { pageTitle: "회원정보", user});
 };
 

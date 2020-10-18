@@ -19,17 +19,18 @@ export const postAddWorkOut = async (req, res) => {
     body: { name, weight, repsOrHold, count, set, breakTime, day }
   } = req;
   try {
-    const user = await User.findById(req.user.id)
-    let workOutDay = await Day.findOne({ day });
-    if(!workOutDay){
-      workOutDay = await Day.create({ day, creator: req.user.id })
+    const user = await User.findById(req.user.id).populate("days");
+    const userFindDay = user.days.find(d => d.day === day);
+    let workOutDay
+    if(!userFindDay){
+      workOutDay = await Day.create({ day, creator: user.id });
+      user.days.push(workOutDay.id);
+    } else {
+      workOutDay = await Day.findById(userFindDay.id)
     }
     const newWorkOut = await WorkOut.create({
-      order: workOutDay.workOuts.length + 1 ,name, weight, repsOrHold, count, set, breakTime, creator: req.user.id
+      name, weight, repsOrHold, count, set, breakTime, creator: user.id, day: workOutDay.id
     });
-    if(!await User.findOne({_id: req.user.id, days: workOutDay.id})){
-      user.days.push(workOutDay.id);
-    }
     workOutDay.workOuts.push(newWorkOut.id);
     user.workOuts.push(newWorkOut.id);
     workOutDay.save();
@@ -45,21 +46,87 @@ export const postAddWorkOut = async (req, res) => {
 // Edit Controller
 export const getEditDay = async (req, res) => {
   const {
-    params: { id }
+    params: { id },
+    user
   } = req;
   const days = await Day.findById(id).populate("workOuts");
-  res.render("editWorkOut", { pageTitle: "운동 수정하기", days });
+  if(user.id === days.creator.toString()){
+    res.render("editWorkOut", { pageTitle: "운동 수정하기", days });
+  } else {
+    res.redirect(`/work-out${routes.day}`)
+  }
 };
 
 export const postEditDay = (req, res) => {
 
 }
 
-export const postEditWorkOut = (req, res) => {
+export const postEditWorkOut = async (req, res) => {
+  const {
+    body: { name, weight, repsOrHold, count, set, breakTime, day },
+    params: { id },
+    user
+  } = req;
+  try {
+    const workOut = await WorkOut.findById(id);
+    if(user.id === workOut.creator.toString()){
+      await WorkOut.findByIdAndUpdate(id, {name, weight, repsOrHold, count, set, breakTime, day});
+    } else {
+      throw Error
+    }
+  } catch(error){
+    res.status(400);
+    console.log(error);
+  } finally {
+    res.end();
+  }
 
 }
 
 // Delete Controller
-export const deleteWorkOut = (req, res) => {
-  //운동 삭제
+export const postDeleteWorkOut = async (req, res) => {
+  const {
+    params: { id },
+    user
+  } = req;
+  try{
+    const workOut = await WorkOut.findById(id).populate("day");
+    if(user.id === workOut.creator.toString()){
+      const { day: { workOuts, id: dayId } } = workOut;
+      const updateUser = user.workOuts.filter(w => w.toString() !== id);
+      const updateDay = workOuts.filter(w => w.toString() !== id);
+      await User.findByIdAndUpdate(user.id, {workOuts: updateUser});
+      await Day.findByIdAndUpdate(dayId, {workOuts: updateDay});
+      await WorkOut.findByIdAndRemove(id);
+    } else {
+      throw Error
+    }
+  }catch(error){
+    console.log(error)
+    res.status(400);
+  }finally{
+    res.end()
+  }
 };
+
+// Change Order
+export const postChangeOrder = async (req, res) => {
+  const {
+    body: { workOuts },
+    params: { id },
+    user
+  } = req;
+  try {
+    const day = await Day.findById(id);
+    if(user.id === day.creator.toString()){
+      await Day.findByIdAndUpdate(id, { workOuts })
+    } else {
+      throw Error
+    }
+  } catch(error) {
+    console.log(error);
+    res.status(400);
+  } finally {
+    res.end();
+  }
+}

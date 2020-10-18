@@ -1,6 +1,6 @@
 .editWorkOut-container {
 	margin-top: 60px;
-	margin-bottom: auto;
+	margin-bottom: 60px;
 	width: inherit;
 	display: flex;
 	flex-direction: column;
@@ -13,9 +13,40 @@
 		display: flex;
 		align-items: center;
 		.workOutBtns {
-			.editBtn {
-				display: block;
+			display: flex;
+		}
+		&:first-of-type {
+			.upBtn {
+				display: none;
+			}
+			.downBtn {
+				margin-left: 42px;
 			}
 		}
+		&:last-of-type {
+			.downBtn {
+				display: none;
+			}
+			.upBtn {
+				margin-right: 42px;
+			}
+		}
+	}
+}
+
+.saveBtn {
+	all: unset;
+	padding: 5px 10px;
+	margin-bottom: auto;
+	font-size: 25px;
+	border: 2px solid #85b5d4;
+	border-radius: 10px;
+	background-color: #eef8ff;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+	&:hover {
+		color: white;
+		border-color: white;
+		background-color: #0096ff;
 	}
 }

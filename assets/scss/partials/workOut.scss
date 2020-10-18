@@ -30,7 +30,7 @@ li {
 	&:first-of-type {
 		margin-top: 20px;
 	}
-	span:not(.editBtn) {
+	span {
 		display: inline-block;
 		width: 80px;
 		text-align: right;
@@ -59,17 +59,18 @@ li {
 		align-items: center;
 		justify-content: center;
 	}
+}
+
+.dayBtns {
+	right: 20px;
 	.editBtn {
 		display: none;
 	}
 }
 
-.dayBtns {
-	right: 20px;
-}
-
 .workOutBtns {
-	right: -60px;
+	display: none;
+	right: -220px;
 }
 
 .workOut.edit {

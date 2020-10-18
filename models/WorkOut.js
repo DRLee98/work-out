@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 const WorkOutSchema = new mongoose.Schema({
-  order: {
-    type: Number,
-    required: "order is required",
-  },
   name: {
     type: String,
     required: "name is required",
