@@ -1,6 +1,15 @@
 .home-container {
-  width: 70vh;
   min-height: 600px;
   text-align: center;
   padding: 15px;
+  .day {
+    display: none;
+    &.today {
+      display: block;
+      border: none;
+    }
+    .dayBtns {
+      display: none;
+    }
+  }
 }

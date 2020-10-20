@@ -1,4 +1,5 @@
 import "../scss/styles.scss";
+import "./dayWorkOut";
 import "./expandWorkOut";
 import "./addWorkOut";
 import "./editWorkOut";

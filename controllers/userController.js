@@ -15,13 +15,13 @@ export const postJoin = async (req, res, next) => {
     res.status(400);
     res.render("join", {
       pageTitle: "회원가입",
-      passwordError: "비밀번호가 일치하지 않습니다.",
+      error: "비밀번호가 일치하지 않습니다.",
     });
   } else if(user) {
     res.status(400);
     res.render("join", {
       pageTitle: "회원가입",
-      emailError: "이미 가입된 이메일입니다.",
+      error: "이미 가입된 이메일입니다.",
     });
   } else {
     try {
@@ -56,7 +56,12 @@ export const logout = (req, res) => {
 export const userDetail = async (req, res) => {
   const { user: {id} } =req
   const user = await User.findById(id)
-  res.render("userDetail", { pageTitle: "회원정보", user});
+  try{
+    res.render("userDetail", { pageTitle: "회원정보", user});
+  } catch(error){
+    console.log(error)
+    res.redirect(routes.home)
+  }
 };
 
 export const editProfile = (req, res) => {

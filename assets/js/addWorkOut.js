@@ -21,7 +21,7 @@ const addWorkOut = (workOut, box) => {
   const set = document.createElement("span");
   const breakTime = document.createElement("span");
   name.innerText = workOut[0].value;
-  weight.innerText = workOut[1].value >= 1 ? `${workOut[1].value}kg` : workOut[1].value;
+  weight.innerText = workOut[1].value >= 1 ? `${workOut[1].value}kg` : "";
   count.innerText =
     workOut[2].value === "reps"
       ? `${workOut[3].value}개`

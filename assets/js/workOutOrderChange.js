@@ -4,6 +4,7 @@ const container = document.querySelector(".editWorkOut-container");
 const upBtns = document.querySelectorAll("#jsUpBtn");
 const downBtns = document.querySelectorAll("#jsDownBtn");
 const saveBtn = document.getElementById("jsSaveOrder");
+const saveMsg = document.getElementById("jsSaveMsg");
 
 let lists
 
@@ -59,9 +60,15 @@ const handleSave = async () => {
         }
     });
     if(response.status === 200){
-        console.log("success")
+        saveMsg.innerHTML = "저장 성공!";
+        setTimeout(clearMsg, 3000);
+    } else {
+        saveMsg.innerHTML = "저장 실패.";
+        setTimeout(clearMsg, 3000);
     }
 }
+
+const clearMsg = () => saveMsg.innerHTML = "";
 
 function init(){
     lists = container.querySelectorAll("li");

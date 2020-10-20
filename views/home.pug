@@ -1,4 +1,8 @@
 extends layouts/main
+include mixins/daysBlock
 
 block content
     section.home-container
+        +daysBlock({
+            days
+        })

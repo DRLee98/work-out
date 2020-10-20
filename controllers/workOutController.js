@@ -4,13 +4,13 @@ import Day from "../models/Day";
 import WorkOut from "../models/WorkOut";
 
 export const getDayWorkOut = async (req, res) => {
-  const days = await Day.find({ creator: req.user.id}).populate("workOuts");
+  const days = await Day.find({ creator: req.user.id }).populate("workOuts");
   res.render("dayWorkOut", { pageTitle: "요일별 운동", days });
 }
 
 // Add Controller
 export const getAdd = async (req, res) => {
-  const days = await Day.find({ creator: req.user.id}).populate("workOuts");
+  const days = await Day.find({ creator: req.user.id }).populate("workOuts");
   res.render("addWorkOut", { pageTitle: "운동 추가하기", days });
 };
 
