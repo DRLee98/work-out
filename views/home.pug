@@ -3,6 +3,7 @@ include mixins/daysBlock
 
 block content
     section.home-container
-        +daysBlock({
-            days
-        })
+        if days 
+            +daysBlock({
+                days
+            })
