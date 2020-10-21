@@ -6,6 +6,27 @@
     position: relative;
     padding: 10px 0;
     transition: height 1s ease-in-out;
+    li {
+      position: relative;
+      font-size: 18px;
+      margin: 3px auto;
+      width: 600px;
+      &:first-of-type {
+        margin-top: 20px;
+      }
+      span {
+        display: inline-block;
+        width: 15%;
+        text-align: right;
+        &:nth-child(1) {
+          width: 40%;
+          text-align: left;
+        }
+      }
+      .edit_work-out {
+        display: none;
+      }
+    }
     h3 {
       font-size: 22px;
     }
@@ -16,27 +37,6 @@
     &:not(:first-child) {
       border-top: 2px solid #d2d2d245;
     }
-  }
-}
-
-li {
-  position: relative;
-  font-size: 18px;
-  margin: 3px 0;
-  &:first-of-type {
-    margin-top: 20px;
-  }
-  span {
-    display: inline-block;
-    width: 80px;
-    text-align: right;
-    &:nth-child(1) {
-      width: 180px;
-      text-align: left;
-    }
-  }
-  .edit_work-out {
-    display: none;
   }
 }
 
@@ -84,10 +84,10 @@ li {
       border-width: 0 0 1px 0;
       border-radius: 0;
       &[type="text"] {
-        width: 180px;
+        width: 40%;
       }
       &[type="number"] {
-        width: 80px;
+        width: 15%;
       }
     }
   }
