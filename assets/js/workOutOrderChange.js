@@ -59,13 +59,6 @@ const handleSave = async () => {
             workOuts: workOutId
         }
     });
-    if(response.status === 200){
-        saveMsg.innerHTML = "저장 성공!";
-        setTimeout(clearMsg, 3000);
-    } else {
-        saveMsg.innerHTML = "저장 실패.";
-        setTimeout(clearMsg, 3000);
-    }
 }
 
 const clearMsg = () => saveMsg.innerHTML = "";

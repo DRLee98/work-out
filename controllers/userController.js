@@ -12,17 +12,13 @@ export const postJoin = async (req, res, next) => {
   } = req;
   let user = await User.findOne({email})
   if (password !== password2) {
+    req.flash("error", "비밀번호가 일치하지 않습니다.");
     res.status(400);
-    res.render("join", {
-      pageTitle: "회원가입",
-      error: "비밀번호가 일치하지 않습니다.",
-    });
+    res.render("join", { pageTitle: "회원가입" });
   } else if(user) {
+    req.flash("error", "이미 가입된 이메일입니다.");
     res.status(400);
-    res.render("join", {
-      pageTitle: "회원가입",
-      error: "이미 가입된 이메일입니다.",
-    });
+    res.render("join", { pageTitle: "회원가입" });
   } else {
     try {
       user = await User({
@@ -38,14 +34,14 @@ export const postJoin = async (req, res, next) => {
 };
 
 export const getLogin = (req, res) => {
-  const error = req.flash().error
-  res.render("login", { pageTitle: "로그인", error });
+  res.render("login", { pageTitle: "로그인" });
 };
 
 export const postLogin = passport.authenticate("local", {
   successRedirect: routes.home,
   failureRedirect: routes.login,
-  failureFlash: true
+  failureFlash: "이메일 또는 비밀번호를 확인해 주세요.",
+  successFlash: "운동일지에 오신걸 환영합니다!"
 });
 
 export const logout = (req, res) => {
@@ -78,12 +74,14 @@ export const  postChangePassword = async (req, res) => {
   } = req;
   try{
     if(newPassword !== newPassword2){
+      req.flash("error", "새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다.");
       res.status(400);
-      return res.render("changePassword", { pageTitle: "비밀번호 변경", error: "새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다." });
+      return res.redirect(`/users/${routes.changePassword}`);
     }
     await req.user.changePassword(oldPassword, newPassword);
   }catch(error){
+    req.flash("error", "기존 비밀번호가 일치하지 않습니다.");
     res.status(400);
-    return res.render("changePassword", { pageTitle: "비밀번호 변경", error: "기존 비밀번호가 일치하지 않습니다." });
+    return res.redirect(`/users/${routes.changePassword}`);
   }
 }
