@@ -5,3 +5,4 @@ import "./addWorkOut";
 import "./editWorkOut";
 import "./deleteWorkOut";
 import "./workOutOrderChange";
+import "./timer";
