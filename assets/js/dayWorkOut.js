@@ -1,5 +1,5 @@
 const homeContainer = document.querySelector(".home-container");
-const dayContainer = homeContainer.querySelector(".day-container");
+const dayContainer = document.querySelector(".day-container");
 
 const week = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 const dayNumber = new Date().getDay();
@@ -17,6 +17,6 @@ function init() {
   today.classList.add("today");
 }
 
-if (homeContainer) {
+if (homeContainer && dayContainer) {
   init();
 }

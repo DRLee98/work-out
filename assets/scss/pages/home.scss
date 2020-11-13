@@ -13,8 +13,8 @@
     align-items: center;
     justify-content: center;
     .clock {
-      height: 140px;
-      width: 140px;
+      height: 150px;
+      width: 150px;
       border-radius: 50%;
       background-color: rgb(40, 40, 40);
       color: wheat;
@@ -22,17 +22,31 @@
       align-items: center;
       justify-content: center;
       transition: all 0.5s ease-in-out;
+      &.start {
+        height: 140px;
+        width: 140px;
+      }
     }
   }
   .sets-box {
     height: 50px;
     margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+      margin: 0 10px;
+    }
   }
   .day {
     display: none;
     &.today {
       display: block;
       border: none;
+      position: relative;
+      &.start {
+        margin-top: 65px;
+      }
       h3 {
         display: none;
       }
@@ -41,6 +55,11 @@
         font-size: 20px;
         width: 750px;
         margin-top: 0;
+        border-radius: 8px;
+        transition: all 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+        span {
+          pointer-events: none;
+        }
         &:not(:last-child) {
           margin-bottom: 15px;
         }
@@ -48,13 +67,60 @@
           background-color: rgba(20, 20, 20, 0.9);
           color: #fff1d7;
           padding: 8px;
-          border-radius: 8px;
         }
-        transition: all 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+        &.selected {
+          transform: scale(1.2);
+          background-color: rgba(0, 184, 255, 80%);
+          color: #fff1d7;
+          padding: 8px;
+          position: absolute;
+          top: -50px;
+        }
+        &.complete {
+          transform: scale(0.9);
+          background-color: rgba(40, 40, 40, 0.5);
+          color: inherit;
+          padding: 8px;
+          span,
+          button {
+            text-decoration: line-through;
+          }
+        }
       }
     }
     .dayBtns {
       display: none;
+    }
+  }
+  input[type="checkbox"] {
+    display: none;
+    & + label {
+      display: inline-block;
+      cursor: pointer;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      line-height: 38px;
+      text-align: center;
+      background: #f5f5f5;
+      border: 3px solid rgba(40, 40, 40, 0.8);
+      border-radius: 50%;
+      font-size: 25px;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+      &:before {
+        content: " ";
+        display: inline-block;
+        clear: both;
+      }
+    }
+    &:checked + label {
+      background: #c1ecff;
+      border: 3px solid #0090ce;
+      color: rgb(255, 241, 215);
+      &:before {
+        content: "🎯";
+      }
     }
   }
 }

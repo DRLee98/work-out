@@ -2,7 +2,7 @@ extends layouts/main
 include mixins/workOutBlock
 
 block content
-    .editWorkOut-container
+    ul.day-container.edit
         if days.day === "mon"
             h3 월요일
         else if days.day === "tue"
@@ -28,5 +28,6 @@ block content
                 id: item.id
             })
     .saveBox
-        span.saveMsg#jsSaveMsg
+        if messages.success
+            .saveSuccessMsg=messages.success
         button.saveBtn#jsSaveOrder 순서 저장하기

@@ -3,14 +3,13 @@ include mixins/daysBlock
 
 block content
     section.home-container
-        .clock-box#jsClockBox
-            .clock#jsClock
-                span#jsMin 00
-                |:
-                span#jsSec 00
-        ul.sets-box
-            li.set
-                input(type="checkbox", name="set")
+        .workOutBar
+            .clock-box#jsClockBox
+                .clock#jsClock
+                    span#jsMin 00
+                    |:
+                    span#jsSec 00
+            .sets-box#jsSetsBox
         if days
             +daysBlock({
                 days

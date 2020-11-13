@@ -6,18 +6,18 @@ mixin workOutBlock(workOut = {})
             span.workOut-count #{workOut.count}개
         else
             span.workOut-count #{workOut.count}초
-        span.workOut-set #{workOut.set}세트
-        span.workOut-breakTime #{workOut.breakTime / 60 >= 1 ? `${Math.floor(workOut.breakTime / 60)} : ${workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}` : workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}
+        button.workOut-set(value=workOut.set) #{workOut.set}세트
+        button.workOut-breakTime(value=workOut.breakTime) #{workOut.breakTime / 60 >= 1 ? `${Math.floor(workOut.breakTime / 60)} : ${workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}` : workOut.breakTime % 60 < 10 ? `0${workOut.breakTime % 60}` : workOut.breakTime % 60}
         .workOutBtns
-            .editBtn#jsEditBtn
+            .editBtn
                 i.fas.fa-edit
-            .deleteBtn#jsDeleteBtn
+            .deleteBtn
                 i.fas.fa-times
-            .upBtn#jsUpBtn
+            .upBtn
                 i.fas.fa-angle-up
-            .downBtn#jsDownBtn
+            .downBtn
                 i.fas.fa-angle-down
-        form.edit_work-out#jsEditWorkOut
+        form.edit_work-out
             input(type="text", name="name", value=workOut.name ,placeholder="이름", required=true)
             input(type="number", name="weight", value=workOut.weight ,placeholder="중량", min="0")
             select(name="repsOrHold")

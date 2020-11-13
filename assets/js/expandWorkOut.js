@@ -1,8 +1,10 @@
-const expandBtns = document.querySelectorAll("#jsExpandBtn");
+const expandBtns = document.querySelectorAll(".expandBtn");
 
 const handleExpandBtn = (e) => {
   const {
-    target: { offsetParent: { parentNode: day } }
+    target: {
+      offsetParent: { parentNode: day },
+    },
   } = e;
   if (!day.classList.contains("close")) {
     day.classList.add("close");
@@ -13,9 +15,11 @@ const handleExpandBtn = (e) => {
   }
 };
 
-function init(){
-  expandBtns.forEach((b) => b.addEventListener("click", handleExpandBtn));
-};
+function init() {
+  expandBtns.forEach((b) =>
+    b.children[0].addEventListener("click", handleExpandBtn)
+  );
+}
 
 if (expandBtns) {
   init();

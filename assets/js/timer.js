@@ -1,28 +1,58 @@
 const clockBox = document.getElementById("jsClockBox");
-const clock = clockBox.querySelector("#jsClock");
+const clock = document.getElementById("jsClock");
+const min = document.getElementById("jsMin");
+const sec = document.getElementById("jsSec");
 
-let interval;
-let time = 0;
+let time, runTime, interval, gauge, gaugeStep;
+export let timerState;
 
-const gauge = (v) => {
-  clockBox.style.background = `conic-gradient(black 0% 0%, #ffe69b ${v}%, black ${v}% 100%)`;
+const handleGauge = (v) => {
+  if (runTime > 0) {
+    clockBox.style.background = `conic-gradient(black 0% 0%, #ffe69b ${v}%, black ${v}% 100%)`;
+  } else {
+    timerStop();
+  }
+};
+
+const formatTime = (v) => (v < 10 ? (v < 0 ? "00" : `0${v}`) : v);
+
+const writeTime = () => {
+  const minValue = Math.floor(runTime / 60);
+  const secValue = Math.floor(runTime % 60);
+  min.innerText = formatTime(minValue);
+  sec.innerText = formatTime(secValue);
 };
 
 const timeRun = () => {
-  gauge(time);
-  if (time > 100) {
-    clock.style.width = "140px";
-    clock.style.height = "140px";
+  writeTime();
+  handleGauge(gauge);
+  runTime = runTime - 0.01;
+  gauge = gauge + gaugeStep;
+};
+
+export const timerSet = (t) => {
+  time = t;
+  runTime = time;
+  gauge = 0;
+  gaugeStep = (100 / time) * 0.01;
+  timerState = "stop";
+  writeTime();
+};
+
+export const timerStart = () => {
+  if (time > 0) {
+    interval = setInterval(timeRun, 10);
+    clock.classList.add("start");
+    timerState = "run";
+  }
+};
+
+export const timerStop = () => {
+  if (interval) {
     clockBox.style.background = "";
+    clock.classList.remove("start");
+    timerState = "stop";
+    timerSet(time);
     clearInterval(interval);
   }
-  time = time + 0.01;
 };
-
-const init = () => {
-  clock.style.width = "150px";
-  clock.style.height = "150px";
-  interval = setInterval(timeRun, 10);
-};
-
-init();
