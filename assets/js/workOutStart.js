@@ -51,7 +51,7 @@ export const nextWorkOut = () => {
     } else {
       console.log("Finished Today Work Out !");
     }
-    removeSelect(target);
+    removeSelect(selected);
     selected.classList.add("complete");
     selected.removeEventListener("click", handleStart);
     selected.removeEventListener("dblclick", handleStop);
