@@ -30,6 +30,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
+    "postcss": "^8.1.1",
     "postcss-loader": "^4.0.3",
     "pug": "^3.0.0",
     "sass-loader": "^10.0.2",
@@ -49,7 +50,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
-    "postcss": "^8.1.1",
     "shx": "^0.3.3"
   }
 }
