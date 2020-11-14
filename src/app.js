@@ -34,7 +34,7 @@ app.use(
     resave: true,
     saveUninitialized: false,
     store: new CookieStore({ mongooseConnection: mongoose.connection }),
-  })
+  }),
 );
 app.use(flash());
 

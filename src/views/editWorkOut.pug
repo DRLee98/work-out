@@ -1,0 +1,33 @@
+extends layouts/main
+include mixins/workOutBlock
+
+block content
+    ul.day-container.edit
+        if days.day === "mon"
+            h3 월요일
+        else if days.day === "tue"
+            h3 화요일
+        else if days.day === "wed"
+            h3 수요일
+        else if days.day === "thu"
+            h3 목요일
+        else if days.day === "fri"
+            h3 금요일
+        else if days.day === "sat"
+            h3 토요일
+        else
+            h3 일요일
+        each item in days.workOuts
+            +workOutBlock({
+                name: item.name,
+                weight: item.weight,
+                repsOrHold: item.repsOrHold,
+                count: item.count,
+                set: item.set,
+                breakTime: item.breakTime,
+                id: item.id
+            })
+    .saveBox
+        if messages.success
+            .saveSuccessMsg=messages.success
+        button.saveBtn#jsSaveOrder 순서 저장하기

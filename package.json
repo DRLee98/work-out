@@ -37,12 +37,19 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node init.js --delay 2",
-    "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
-    "build:assets": "cross-env WEBPACK_ENV=production webpack -w"
+    "dev:server": "nodemon --exec babel-node src/init.js --delay 2",
+    "dev:assets": "cd src && cross-env WEBPACK_ENV=development webpack -w",
+    "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack",
+    "build:server": "babel src --out-dir build --ignore src/assets --ignore src/static --ignore src/webpack.config.js",
+    "copyAll": "cp -R src/static build/static && cp -R src/views build/views",
+    "build": "npm run build:assets && npm run build:server && npm run copyAll",
+    "prebuild": "rm -rf build",
+    "start": "node build/init.js",
+    "prestart": "npm run build"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
-    "postcss": "^8.1.1"
+    "postcss": "^8.1.1",
+    "shx": "^0.3.3"
   }
 }

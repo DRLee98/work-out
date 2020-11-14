@@ -1,0 +1,144 @@
+include workOutBlock
+
+mixin daysBlock(days = {})
+    article.day-container
+        ul.mon.day
+            h3 월요일
+            each day in days.days
+                if day.day === "mon"
+                    .dayBtns
+                        span.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.expandBtn
+                            i.fas.fa-minus
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime,
+                            id: item.id
+                        })
+        ul.tue.day
+            h3 화요일
+            each day in days.days
+                if day.day === "tue"
+                    .dayBtns
+                        span.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.expandBtn
+                            i.fas.fa-minus
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime,
+                            id: item.id
+                        })
+        ul.wed.day
+            h3 수요일
+            each day in days.days
+                if day.day === "wed"
+                    .dayBtns
+                        span.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.expandBtn
+                            i.fas.fa-minus
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime,
+                            id: item.id
+                        })
+        ul.thu.day
+            h3 목요일
+            each day in days.days
+                if day.day === "thu"
+                    .dayBtns
+                        span.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.expandBtn
+                            i.fas.fa-minus
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime,
+                            id: item.id
+                        })
+        ul.fri.day
+            h3 금요일
+            each day in days.days
+                if day.day === "fri"
+                    .dayBtns
+                        span.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.expandBtn
+                            i.fas.fa-minus
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime,
+                            id: item.id
+                        })
+        ul.sat.day
+            h3 토요일
+            each day in days.days
+                if day.day === "sat"
+                    .dayBtns
+                        span.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.expandBtn
+                            i.fas.fa-minus
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime,
+                            id: item.id
+                        })
+        ul.sun.day
+            h3 일요일
+            each day in days.days
+                if day.day === "sun"
+                    .dayBtns
+                        span.editBtn
+                            a(href=routes.editDay(day.id))
+                                i.fas.fa-edit
+                        span.expandBtn
+                            i.fas.fa-minus
+                    each item in day.workOuts
+                        +workOutBlock({
+                            name: item.name,
+                            weight: item.weight,
+                            repsOrHold: item.repsOrHold,
+                            count: item.count,
+                            set: item.set,
+                            breakTime: item.breakTime,
+                            id: item.id
+                        })

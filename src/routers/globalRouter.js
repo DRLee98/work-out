@@ -1,12 +1,6 @@
 import express from "express";
 import { home, search } from "../controllers/globalController";
-import {
-  getJoin,
-  getLogin,
-  logout,
-  postJoin,
-  postLogin,
-} from "../controllers/userController";
+import { getJoin, getLogin, logout, postJoin, postLogin } from "../controllers/userController";
 import { onlyPublic } from "../middlewares";
 import routes from "../routes";
 

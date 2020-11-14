@@ -1,0 +1,16 @@
+extends layouts/main
+include mixins/daysBlock
+
+block content
+    section.home-container
+        .workOutBar
+            .clock-box#jsClockBox
+                .clock#jsClock
+                    span#jsMin 00
+                    |:
+                    span#jsSec 00
+            .sets-box#jsSetsBox
+        if days
+            +daysBlock({
+                days
+            })
