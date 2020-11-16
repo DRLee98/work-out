@@ -17,19 +17,20 @@ mixin workOutBlock(workOut = {})
                 i.fas.fa-angle-up
             .downBtn
                 i.fas.fa-angle-down
-        form.edit_work-out
-            input(type="text", name="name", value=workOut.name ,placeholder="이름", required=true)
-            input(type="number", name="weight", value=workOut.weight ,placeholder="중량", min="0")
-            select(name="repsOrHold")
-                if workOut.repsOrHold === "reps"
-                    option(value="reps", selected) 개수
-                    option(value="hold") 버티기
-                else
-                    option(value="reps") 개수
-                    option(value="hold", selected) 버티기
-            input(type="number", name="count", value=workOut.count ,placeholder="횟수", required=true, min="0")
-            input(type="number", name="set", value=workOut.set ,placeholder="세트", required=true, min="0")
-            input(type="number", name="breakTime", value=workOut.breakTime ,placeholder="쉬는 시간", min="0")
-            input(type="submit", value="수정하기")
+        if workOut.edit
+            form.edit_work-out
+                input(type="text", name="name", value=workOut.name ,placeholder="이름", required=true)
+                input(type="number", name="weight", value=workOut.weight ,placeholder="중량", min="0")
+                select(name="repsOrHold")
+                    if workOut.repsOrHold === "reps"
+                        option(value="reps", selected) 개수
+                        option(value="hold") 버티기
+                    else
+                        option(value="reps") 개수
+                        option(value="hold", selected) 버티기
+                input(type="number", name="count", value=workOut.count ,placeholder="횟수", required=true, min="0")
+                input(type="number", name="set", value=workOut.set ,placeholder="세트", required=true, min="0")
+                input(type="number", name="breakTime", value=workOut.breakTime ,placeholder="쉬는 시간", min="0")
+                input(type="submit", value="수정하기")
 
 

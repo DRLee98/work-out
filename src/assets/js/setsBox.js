@@ -27,6 +27,7 @@ const InspectSet = () => {
 };
 
 export const eraseSets = () => {
+  boxList = [];
   while (setsBox.firstChild) {
     setsBox.removeChild(setsBox.lastChild);
   }

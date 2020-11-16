@@ -2,8 +2,10 @@ const clockBox = document.getElementById("jsClockBox");
 const clock = document.getElementById("jsClock");
 const min = document.getElementById("jsMin");
 const sec = document.getElementById("jsSec");
+const stopBtn = document.getElementById("jsClockStop");
 
 let time, runTime, interval, gauge, gaugeStep;
+
 export let timerState;
 
 const handleGauge = (v) => {
@@ -44,6 +46,7 @@ export const timerStart = () => {
     interval = setInterval(timeRun, 10);
     clock.classList.add("start");
     timerState = "run";
+    stopBtn.classList.add("show");
   }
 };
 
@@ -54,5 +57,8 @@ export const timerStop = () => {
     timerState = "stop";
     timerSet(time);
     clearInterval(interval);
+    stopBtn.classList.remove("show");
   }
 };
+
+stopBtn.addEventListener("click", timerStop);

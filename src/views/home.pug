@@ -9,8 +9,15 @@ block content
                     span#jsMin 00
                     |:
                     span#jsSec 00
+                .clockBtn#jsClockStop
+                    i.far.fa-stop-circle
             .sets-box#jsSetsBox
         if days
-            +daysBlock({
-                days
-            })
+            .day-box
+                +daysBlock({
+                    days
+                })
+            span.day-btn.next
+                i.fas.fa-caret-right
+            span.day-btn.prev
+                i.fas.fa-caret-left

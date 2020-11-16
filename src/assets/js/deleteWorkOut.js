@@ -1,16 +1,14 @@
 import axios from "axios";
 
 const deleteBtns = document.querySelectorAll(".deleteBtn");
-const container = document.querySelector(".editWorkOut-container");
+const container = document.querySelector(".day-container.edit");
 
 const handleDeleteBtn = async (e) => {
   const {
     target: {
-      offsetParent: { parentNode: targetList },
+      parentNode: { parentNode: targetList },
     },
   } = e;
-  const lists = container.querySelectorAll("li");
-  console.dir(lists);
   const response = await axios({
     url: `/api/${targetList.id}/delete`,
     method: "POST",

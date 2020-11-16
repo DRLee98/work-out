@@ -6,7 +6,7 @@ const editWorkOutForms = document.querySelectorAll(".edit_work-out");
 const handleEditBtn = (e) => {
   const {
     target: {
-      offsetParent: { parentNode: list },
+      parentNode: { parentNode: list },
     },
   } = e;
   if (!list.classList.contains("edit")) {
@@ -19,8 +19,7 @@ const handleEditBtn = (e) => {
 const editWorkOut = (workOut, li) => {
   const { children: span } = li;
   span[0].innerText = workOut[0].value;
-  span[1].innerText =
-    workOut[1].value >= 1 ? `${workOut[1].value}kg` : workOut[1].value;
+  span[1].innerText = workOut[1].value >= 1 ? `${workOut[1].value}kg` : "";
   span[2].innerText =
     workOut[2].value === "reps"
       ? `${workOut[3].value}개`

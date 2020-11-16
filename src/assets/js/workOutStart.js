@@ -1,9 +1,10 @@
-import { timerSet, timerStart, timerStop } from "./timer";
+import { timerSet, timerStop } from "./timer";
 import { writeSets, eraseSets } from "./setsBox";
 
 const todayWorkOut = document.querySelectorAll(".day.today li");
 
 let selected;
+let workOutList = [];
 
 const selectWorkOut = (target) => {
   const { children } = target;
@@ -13,11 +14,15 @@ const selectWorkOut = (target) => {
   timerSet(time);
   writeSets(sets);
   target.classList.add("selected");
+  target.addEventListener("dblclick", stopWorkOut);
 };
 
 const removeSelect = (target) => {
+  timerStop();
+  timerSet(0);
   eraseSets();
   target.classList.remove("selected");
+  target.removeEventListener("dblclick", stopWorkOut);
 };
 
 const handleStart = (e) => {
@@ -28,33 +33,44 @@ const handleStart = (e) => {
   }
 };
 
-const handleStop = (e) => {
+const eventListen = (target) => {
+  target.addEventListener("click", handleStart);
+  workOutList.push(target);
+};
+
+const inspectList = () => {
+  const checkList = workOutList.filter((li) =>
+    li.classList.contains("finished")
+  );
+  if (workOutList.length === checkList.length) {
+    return true;
+  }
+  return false;
+};
+
+export const stopWorkOut = (e) => {
   if (selected) {
     selected = null;
     const { target } = e;
-    timerStop();
-    timerSet(0);
     removeSelect(target);
+    target.offsetParent.classList.remove("start");
   }
-};
-
-const eventListen = (target) => {
-  target.addEventListener("click", handleStart);
-  target.addEventListener("dblclick", handleStop);
 };
 
 export const nextWorkOut = () => {
   if (selected) {
-    const { nextSibling } = selected;
-    if (nextSibling) {
-      selectWorkOut(nextSibling);
-    } else {
-      console.log("Finished Today Work Out !");
-    }
     removeSelect(selected);
-    selected.classList.add("complete");
+    selected.classList.add("finished");
     selected.removeEventListener("click", handleStart);
-    selected.removeEventListener("dblclick", handleStop);
+    let { nextSibling } = selected;
+    const finished = inspectList();
+    if (finished) {
+      console.log("Finished Today Work Out !");
+      selected.offsetParent.classList.remove("start");
+    } else if (nextSibling && nextSibling.classList.contains("finished")) {
+      ({ nextSibling } = nextSibling);
+    }
+    selectWorkOut(nextSibling);
   }
 };
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const container = document.querySelector(".editWorkOut-container");
+const container = document.querySelector(".day-container.edit");
 const upBtns = document.querySelectorAll(".upBtn");
 const downBtns = document.querySelectorAll(".downBtn");
 const saveBtn = document.getElementById("jsSaveOrder");
@@ -40,16 +40,14 @@ const changeOrder = (target, direction) => {
 const orderBtnHandle = (e) => {
   const {
     target: {
-      parentNode: {
-        parentNode: { parentNode: targetList },
-        classList,
-      },
+      classList,
+      parentNode: { parentNode },
     },
   } = e;
   if (classList.contains("upBtn")) {
-    changeOrder(targetList, "up");
+    changeOrder(parentNode, "up");
   } else {
-    changeOrder(targetList, "down");
+    changeOrder(parentNode, "down");
   }
 };
 

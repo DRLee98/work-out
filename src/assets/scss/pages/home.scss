@@ -2,6 +2,7 @@
   min-height: 600px;
   text-align: center;
   padding: 15px;
+  position: relative;
   .clock-box {
     font-size: 50px;
     height: 160px;
@@ -12,6 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     .clock {
       height: 150px;
       width: 150px;
@@ -27,6 +29,18 @@
         width: 140px;
       }
     }
+    .clockBtn {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: -25px;
+      font-size: 30px;
+      color: #dc0000;
+      cursor: pointer;
+      &.show {
+        display: block;
+      }
+    }
   }
   .sets-box {
     height: 50px;
@@ -38,53 +52,82 @@
       margin: 0 10px;
     }
   }
+  .day-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    &.next {
+      transform: translateX(-900px);
+      transition: transform 0.5s ease-in-out;
+    }
+    &.prev {
+      transform: translateX(900px);
+      transition: transform 0.5s ease-in-out;
+    }
+  }
   .day {
     display: none;
-    &.today {
+    &.currentList {
       display: block;
       border: none;
-      position: relative;
-      &.start {
-        margin-top: 65px;
+      &.today {
+        background-color: #ecf9ff;
+        padding: 10px 20px;
+        border-radius: 10px;
+        &.start {
+          margin-top: 65px;
+        }
       }
-      h3 {
-        display: none;
+    }
+    &.nextList {
+      display: block;
+      border: none;
+      position: absolute;
+      right: -820px;
+    }
+    &.prevList {
+      display: block;
+      border: none;
+      position: absolute;
+      left: -820px;
+    }
+    h3 {
+      display: none;
+    }
+    li {
+      cursor: pointer;
+      font-size: 20px;
+      width: 750px;
+      margin-top: 0;
+      border-radius: 8px;
+      transition: all 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+      span {
+        pointer-events: none;
       }
-      li {
-        cursor: pointer;
-        font-size: 20px;
-        width: 750px;
-        margin-top: 0;
-        border-radius: 8px;
-        transition: all 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96);
-        span {
-          pointer-events: none;
-        }
-        &:not(:last-child) {
-          margin-bottom: 15px;
-        }
-        &:hover {
-          background-color: rgba(20, 20, 20, 0.9);
-          color: #fff1d7;
-          padding: 8px;
-        }
-        &.selected {
-          transform: scale(1.2);
-          background-color: rgba(0, 184, 255, 80%);
-          color: #fff1d7;
-          padding: 8px;
-          position: absolute;
-          top: -50px;
-        }
-        &.complete {
-          transform: scale(0.9);
-          background-color: rgba(40, 40, 40, 0.5);
-          color: inherit;
-          padding: 8px;
-          span,
-          button {
-            text-decoration: line-through;
-          }
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+      &:hover {
+        background-color: rgba(20, 20, 20, 0.9);
+        color: #fff1d7;
+        padding: 8px;
+      }
+      &.selected {
+        transform: scale(1.2);
+        background-color: rgba(0, 184, 255, 80%);
+        color: #fff1d7;
+        padding: 8px;
+        position: absolute;
+        top: -50px;
+      }
+      &.finished {
+        transform: scale(0.9);
+        background-color: rgba(40, 40, 40, 0.5);
+        color: inherit;
+        padding: 8px;
+        span,
+        button {
+          text-decoration: line-through;
         }
       }
     }
@@ -121,6 +164,25 @@
       &:before {
         content: "🎯";
       }
+    }
+  }
+  .day-box {
+    overflow: hidden;
+    position: relative;
+    min-height: 580px;
+    width: 900px;
+  }
+  .day-btn {
+    position: absolute;
+    bottom: 50%;
+    font-size: 55px;
+    padding: 0 15px;
+    cursor: pointer;
+    &.next {
+      right: -15%;
+    }
+    &.prev {
+      left: -15%;
     }
   }
 }
