@@ -2,6 +2,7 @@ import { timerSet, timerStop } from "./timer";
 import { writeSets, eraseSets } from "./setsBox";
 
 const todayWorkOut = document.querySelectorAll(".day.today li");
+const homeContainer = document.getElementById("jsHome");
 
 let selected;
 let workOutList = [];
@@ -39,9 +40,7 @@ const eventListen = (target) => {
 };
 
 const inspectList = () => {
-  const checkList = workOutList.filter((li) =>
-    li.classList.contains("finished")
-  );
+  const checkList = workOutList.filter((li) => li.classList.contains("finished"));
   if (workOutList.length === checkList.length) {
     return true;
   }
@@ -63,14 +62,18 @@ export const nextWorkOut = () => {
     selected.classList.add("finished");
     selected.removeEventListener("click", handleStart);
     let { nextSibling } = selected;
-    const finished = inspectList();
-    if (finished) {
-      console.log("Finished Today Work Out !");
-      selected.offsetParent.classList.remove("start");
-    } else if (nextSibling && nextSibling.classList.contains("finished")) {
+    while (nextSibling && nextSibling.classList.contains("finished")) {
       ({ nextSibling } = nextSibling);
     }
-    selectWorkOut(nextSibling);
+    if (nextSibling) {
+      return selectWorkOut(nextSibling);
+    }
+    if (inspectList()) {
+      homeContainer.classList.add("finished");
+      console.log("Finished Today Work Out!");
+    }
+    selected.offsetParent.classList.remove("start");
+    selected = null;
   }
 };
 

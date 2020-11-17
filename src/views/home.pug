@@ -2,16 +2,19 @@ extends layouts/main
 include mixins/daysBlock
 
 block content
-    section.home-container
+    section.home-container#jsHome
         .workOutBar
             .clock-box#jsClockBox
                 .clock#jsClock
-                    span#jsMin 00
-                    |:
-                    span#jsSec 00
+                    .time
+                        span#jsMin 00
+                        |:
+                        span#jsSec 00
+                    span.finish 🏆
                 .clockBtn#jsClockStop
                     i.far.fa-stop-circle
             .sets-box#jsSetsBox
+            span.finish-text Finished Today Work Out!
         if days
             .day-box
                 +daysBlock({

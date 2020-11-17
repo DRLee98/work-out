@@ -77,12 +77,10 @@ export const postEditWorkOut = async (req, res) => {
     const workOut = await WorkOut.findById(id);
     if (user.id === workOut.creator.toString()) {
       await WorkOut.findByIdAndUpdate(id, { name, weight, repsOrHold, count, set, breakTime, day });
-      req.flash("success", "운동이 성공적으로 수정되었습니다.");
     } else {
       throw Error;
     }
   } catch (error) {
-    req.flash("error", "운동 수정에 실패하였습니다.");
     res.status(400);
     console.log(error);
   } finally {

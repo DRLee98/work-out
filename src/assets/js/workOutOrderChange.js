@@ -62,9 +62,13 @@ const handleSave = async () => {
       workOuts: workOutId,
     },
   });
+  if (response.status === 200) {
+    saveMsg.classList.add("show");
+    setTimeout(() => {
+      saveMsg.classList.remove("show");
+    }, 3000);
+  }
 };
-
-const clearMsg = () => (saveMsg.innerHTML = "");
 
 function init() {
   lists = container.querySelectorAll("li");

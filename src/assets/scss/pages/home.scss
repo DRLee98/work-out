@@ -3,6 +3,36 @@
   text-align: center;
   padding: 15px;
   position: relative;
+  &.finished {
+    .clock-box .clock {
+      height: 130px;
+      width: 130px;
+      background-color: #c1ecff;
+      .time {
+        display: none;
+      }
+      .finish {
+        display: block;
+      }
+    }
+    .finish-text {
+      display: block;
+    }
+    .sets-box {
+      display: none;
+    }
+    .day.currentList.today {
+      background-color: #fff1d778;
+      li.finished {
+        transform: none;
+        background-color: #ffe5958f;
+        span,
+        button {
+          text-decoration: none;
+        }
+      }
+    }
+  }
   .clock-box {
     font-size: 50px;
     height: 160px;
@@ -74,6 +104,7 @@
         background-color: #ecf9ff;
         padding: 10px 20px;
         border-radius: 10px;
+        transition: background-color 0.5s ease-in-out;
         &.start {
           margin-top: 65px;
         }
@@ -184,5 +215,14 @@
     &.prev {
       left: -15%;
     }
+  }
+  .finish {
+    display: none;
+    font-size: 80px;
+  }
+  .finish-text {
+    display: none;
+    font-size: 50px;
+    margin: 15px 0;
   }
 }

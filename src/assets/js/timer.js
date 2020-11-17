@@ -61,4 +61,6 @@ export const timerStop = () => {
   }
 };
 
-stopBtn.addEventListener("click", timerStop);
+if (stopBtn) {
+  stopBtn.addEventListener("click", timerStop);
+}
