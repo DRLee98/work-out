@@ -1,7 +1,7 @@
 # Work-out
 my work out routine
 
-# Skils
+# Skills
 Nodejs, Express, Mongo, Mongoose, Passport, Webpack, Pug, Scss, Javascript
 
 
