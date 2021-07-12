@@ -1,5 +1,6 @@
 import express from "express";
 import helmet from "helmet";
+import csp from "helmet-csp";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import path from "path";
@@ -22,6 +23,14 @@ const app = express();
 const CookieStore = MongoStore(session);
 
 app.use(helmet());
+app.use(
+  csp({
+    useDefaults: true,
+    directives: {
+      imgSrc: ["'self'", "data:", "*"],
+    },
+  }),
+);
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "static")));

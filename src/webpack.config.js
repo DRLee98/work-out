@@ -4,16 +4,17 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const MODE = process.env.WEBPACK_ENV;
 const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
-const ENTRY_IMG_FILE = path.resolve(
+const ENTRY_FAVICON = path.resolve(__dirname, "assets", "img", "favicon.png");
+const ENTRY_PROFILE_IMG = path.resolve(
   __dirname,
   "assets",
   "img",
-  "icons8-dumbbell-64.png"
+  "profile.png",
 );
 const OUTPUT_DIR = path.join(__dirname, "static");
 
 const config = {
-  entry: ["@babel/polyfill", ENTRY_FILE, ENTRY_IMG_FILE],
+  entry: ["@babel/polyfill", ENTRY_FILE, ENTRY_FAVICON, ENTRY_PROFILE_IMG],
   mode: MODE,
   module: {
     rules: [
@@ -24,7 +25,7 @@ const config = {
             loader: "file-loader",
             options: {
               outputPath: "images",
-              name: "favicon.[ext]",
+              name: "[name].[ext]",
             },
           },
         ],

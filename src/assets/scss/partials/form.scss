@@ -1,6 +1,6 @@
 .form-container {
   height: 600px;
-  width: 500px;
+  min-width: 500px;
   display: flex;
   justify-content: center;
   position: relative;
@@ -17,14 +17,37 @@
   }
   form {
     padding: 20px;
+    .contents-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+      gap: 15px;
+    }
     input {
       display: block;
       width: 300px;
       height: 40px;
       margin: 0 auto;
       &:not(:last-child) {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
       }
+    }
+  }
+
+  .image-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    input {
+      display: none;
+    }
+    label {
+      cursor: pointer;
+    }
+    span {
+      margin-top: 10px;
     }
   }
 }
@@ -83,8 +106,12 @@ form {
     border: 1px solid rgba(120, 120, 120, 0.2);
     border-radius: 10px;
     outline: none;
-    &[type="submit"]:hover {
-      background-color: #eef3ff6e;
+    &[type="submit"] {
+      width: 100%;
+      cursor: pointer;
+      &:hover {
+        background-color: #75c8ff6e;
+      }
     }
   }
 }

@@ -1,18 +1,30 @@
 .userDetail-container {
-	min-width: 500px;
-	min-height: 500px;
-	.userDetail-btns {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		a {
-			display: inline-block;
-			padding: 5px 10px;
-			background-color: floralwhite;
-			border: 1px solid #d2d2d2c2;
-			border-radius: 10px;
-			margin: 10px 0;
-		}
-	}
+  min-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1.5em;
+  .contents-box {
+    margin-left: 1.5em;
+    .userName {
+      font-size: 24px;
+    }
+    .userDetail-btns {
+      margin-top: 0.5em;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      a {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: floralwhite;
+        border: 1px solid #d2d2d2c2;
+        border-radius: 10px;
+        margin: 10px 0;
+        &:hover {
+          background-color: rgb(255, 230, 181);
+        }
+      }
+    }
+  }
 }

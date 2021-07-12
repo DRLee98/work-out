@@ -5,8 +5,7 @@ const setsBox = document.getElementById("jsSetsBox");
 
 let boxList = [];
 
-const handleChecked = (e) => {
-  const { target } = e;
+const handleChecked = ({ target }) => {
   const lastSet = InspectSet();
   if (lastSet && timerState === "stop") {
     nextWorkOut();
