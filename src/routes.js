@@ -20,6 +20,8 @@ const EDIT_DAY = "/:id/day-edit";
 //Post
 const POST = "/post";
 const POST_DETAIL = "/:id";
+const ADD_POST = "/add-post";
+const EDIT_POST = "/:id/edit-post";
 
 //API
 const API = "/api";
@@ -27,8 +29,6 @@ const ADD_WORKOUT = "/add-item";
 const EDIT_WORKOUT = "/:id/edit";
 const DELETE_WORKOUT = "/:id/delete";
 const CHANGE_ORDER = "/:id/change-order";
-const ADD_POST = "/add-post";
-const EDIT_POST = "/:id/edit-post";
 const DELETE_POST = "/:id/delete";
 const LIKE_POST = "/:id/like";
 

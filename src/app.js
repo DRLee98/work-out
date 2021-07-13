@@ -17,6 +17,7 @@ import workOutRouter from "./routers/workOutRouter";
 import apiRouter from "./routers/apiRouter";
 
 import "./passport";
+import postRouter from "./routers/postRouter";
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(
     useDefaults: true,
     directives: {
       imgSrc: ["'self'", "data:", "*"],
+      scriptSrc: ["'self'"],
     },
   }),
 );
@@ -56,5 +58,6 @@ app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.workOut, workOutRouter);
 app.use(routes.api, apiRouter);
+app.use(routes.post, postRouter);
 
 export default app;

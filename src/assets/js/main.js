@@ -7,3 +7,4 @@ import "./deleteWorkOut";
 import "./workOutOrderChange";
 import "./timer";
 import "./workOutStart";
+import "./preview";

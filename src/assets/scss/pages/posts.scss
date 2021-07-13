@@ -1,0 +1,41 @@
+.posts-container {
+  margin-top: 3em;
+  table {
+    width: 80vw;
+    thead {
+      border-bottom: 1px solid;
+      line-height: 2;
+    }
+    tr {
+      & :first-child {
+        width: 8%;
+      }
+      & :nth-child(2) {
+        width: 55%;
+      }
+      & :nth-child(3) {
+        width: 18%;
+      }
+      & :nth-child(4) {
+        width: 12%;
+      }
+      & :last-child {
+        width: 7%;
+      }
+    }
+  }
+  .add-post-link {
+    margin-top: 1em;
+    text-align: right;
+    a {
+      padding: 5px;
+      border-radius: 10px;
+      color: rgba(20, 20, 20, 0.9);
+      &:hover {
+        background-color: rgba(20, 20, 20, 0.9);
+        color: #fff1d7;
+      }
+      transition: all 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+    }
+  }
+}

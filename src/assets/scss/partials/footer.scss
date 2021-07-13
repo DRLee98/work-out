@@ -1,13 +1,13 @@
 .footer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   opacity: 0.4;
   background-color: #e5e5e561;
   border-top: 3px solid #d2d2d245;
-  padding: 40px 0;
+  padding: 20px 0;
   .footer-icon {
-    margin-right: 15px;
     font-size: 35px;
   }
   .footer-title {

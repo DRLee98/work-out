@@ -1,0 +1,15 @@
+extends layouts/main
+
+block content
+    section.posts-container
+        table
+            thead 
+                tr 
+                    th No.
+                    th 제목
+                    th 작성자
+                    th 작성시간
+                    th 좋아요
+            tbody 
+        .add-post-link
+            a(href=routes.post + routes.addPost) + 게시글 작성하기
