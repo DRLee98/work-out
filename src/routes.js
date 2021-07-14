@@ -31,6 +31,7 @@ const DELETE_WORKOUT = "/:id/delete";
 const CHANGE_ORDER = "/:id/change-order";
 const DELETE_POST = "/:id/delete";
 const LIKE_POST = "/:id/like";
+const ADD_COMMENT = "/:id/add-comment";
 
 const routes = {
   home: HOME,
@@ -81,6 +82,13 @@ const routes = {
   editPost: EDIT_POST,
   deletePost: DELETE_POST,
   likePost: LIKE_POST,
+  addComment: (id) => {
+    if (id) {
+      return `/api/${id}/add-comment`;
+    } else {
+      return ADD_COMMENT;
+    }
+  },
 };
 
 export default routes;

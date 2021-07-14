@@ -115,77 +115,6 @@
         padding: 10px;
       }
     }
-    .image-box {
-      margin: 1em 0;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      position: relative;
-      .hide-block {
-        width: 100%;
-        overflow: hidden;
-      }
-      input[type="file"] {
-        display: none;
-      }
-      .preview-block {
-        width: 100px;
-        min-width: 100px;
-        height: 100px;
-        border-radius: 10px;
-      }
-      label {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid rgba(120, 120, 120, 0.2);
-        padding: 5px;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        i {
-          font-size: 28px;
-          margin: 15% 0;
-        }
-        span {
-          font-size: 15px;
-        }
-        &:hover {
-          background-color: #9ad2f730;
-        }
-      }
-      .preview-list {
-        display: flex;
-        gap: 10px;
-        transition: all 0.2s ease-in-out;
-      }
-      button {
-        all: unset;
-        cursor: pointer;
-        width: 25px;
-        height: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 999px;
-        transition: all 0.2s ease-in-out;
-        &:hover {
-          background-color: rgba(20, 20, 20, 0.9);
-          color: #fff1d7;
-        }
-        &.hide {
-          display: none;
-        }
-      }
-      .right-btn {
-        position: absolute;
-        right: -35px;
-      }
-      .left-btn {
-        position: absolute;
-        left: -35px;
-      }
-    }
   }
 }
 
@@ -207,5 +136,30 @@ form {
         background-color: #75c8ff6e;
       }
     }
+  }
+}
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  input {
+    height: 35px;
+    border-radius: 0;
+  }
+  input[type="text"] {
+    width: 75%;
+    border-radius: 5px 0 0 5px;
+    padding: 0 10px;
+  }
+  input[type="submit"] {
+    width: 10%;
+    border-radius: 0 5px 5px 0;
+    padding: 0px !important;
   }
 }

@@ -11,5 +11,17 @@ block content
                     th 작성시간
                     th 좋아요
             tbody 
+                each post, i in posts
+                        tr
+                            th
+                                a(href=routes.postDetail(post.id))=i+1
+                            th
+                                a(href=routes.postDetail(post.id))=post.title
+                            th
+                                a(href=routes.postDetail(post.id))=post.creator.name
+                            th
+                                a(href=routes.postDetail(post.id))=new Date(post.createdAt).toLocaleString('ko-KR', {  hour12: false })
+                            th
+                                a(href=routes.postDetail(post.id))=post.likes.length
         .add-post-link
             a(href=routes.post + routes.addPost) + 게시글 작성하기

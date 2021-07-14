@@ -1,23 +1,13 @@
 extends layouts/main
+include mixins/postImgList
 
 block content
-    .post_form-container 
-        form.post-form
+    .post.post_form-container
+        form.post-form(method="post" enctype="multipart/form-data")
             .contents-box
                 input(type="text", name="title", placeholder="제목", required=true)
                 textarea(name="contents", placeholder="내용", required=true)
-            .image-box
-                .hide-block
-                    input#postImg(type="file", name="images" multiple)
-                    ul.preview-list
-                        li
-                            label.preview-block(for="postImg")
-                                i.fas.fa-plus
-                                span 이미지 추가하기
-                button#preview-right.right-btn.hide
-                    i.fas.fa-chevron-right
-                button#preview-left.left-btn.hide
-                    i.fas.fa-chevron-left
+            +postImgList(true)
             if messages.error
                 .errorMsg=messages.error
             input(type="submit", value="게시글 만들기")

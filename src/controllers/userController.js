@@ -53,10 +53,11 @@ export const logout = (req, res) => {
 
 export const userDetail = async (req, res) => {
   const {
-    user: { id },
+    params: { id },
   } = req;
-  const user = await User.findById(id);
   try {
+    const user = await User.findById(id);
+    console.log(user);
     res.render("userDetail", { pageTitle: "회원정보", user });
   } catch (error) {
     console.log(error);
@@ -66,7 +67,7 @@ export const userDetail = async (req, res) => {
 
 export const getEditProfile = async (req, res) => {
   const {
-    user: { id },
+    params: { id },
   } = req;
   const user = await User.findById(id);
   try {

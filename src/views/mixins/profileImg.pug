@@ -1,2 +1,6 @@
-mixin profileImg(profileUrl)
-    img.profile-image(src=profileUrl ? profileUrl : "/static/images/profile.png")
+mixin profileImg(profileUrl, id)
+    if id 
+        a(href=routes.userDetail(post.creator._id))
+            img.profile-image(src=profileUrl ? profileUrl : "/static/images/profile.png")
+    else 
+        img.profile-image(src=profileUrl ? profileUrl : "/static/images/profile.png")

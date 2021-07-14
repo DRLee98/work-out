@@ -8,3 +8,4 @@ import "./workOutOrderChange";
 import "./timer";
 import "./workOutStart";
 import "./preview";
+import "./addComment";

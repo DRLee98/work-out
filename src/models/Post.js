@@ -10,6 +10,10 @@ const PostSchema = new mongoose.Schema({
     required: "contents is required",
   },
   imageUrls: [String],
+  views: {
+    type: Number,
+    default: 0,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

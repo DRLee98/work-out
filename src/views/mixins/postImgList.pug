@@ -1,0 +1,17 @@
+mixin postImgList(isForm, images)
+    .image-box
+        .hide-block
+            ul.post-img-list
+                if isForm
+                    input#postImg(type="file", name="images" multiple)
+                    li
+                        label.post-img-block(for="postImg")
+                            i.fas.fa-plus
+                            span 이미지 추가하기
+                if images
+                    each imageUrl in images
+                        li.post-img 
+                            a(href=imageUrl, target="_blank")
+                                img.post-img-block(src=imageUrl)
+
+        include ../partials/postImgBtn
