@@ -81,7 +81,13 @@ const routes = {
   addPost: ADD_POST,
   editPost: EDIT_POST,
   deletePost: DELETE_POST,
-  likePost: LIKE_POST,
+  likePost: (id) => {
+    if (id) {
+      return `/api/${id}/like`;
+    } else {
+      return LIKE_POST;
+    }
+  },
   addComment: (id) => {
     if (id) {
       return `/api/${id}/add-comment`;

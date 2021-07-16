@@ -14,10 +14,10 @@ export const getPosts = async (req, res) => {
 export const getPostDetail = async (req, res) => {
   const {
     params: { id: _id },
+    user: { _id: userId },
   } = req;
   const post = await Post.findById({ _id })
     .populate({ path: "creator", select: ["name", "email", "avatarUrl"] })
-    .populate({ path: "likes", select: "name" })
     .populate({
       path: "comments",
       options: { sort: { createdAt: -1 } },
@@ -25,8 +25,10 @@ export const getPostDetail = async (req, res) => {
     });
   post.views = post.views + 1;
   post.save();
+  const liked = await Post.isLiked(userId, post.likes);
+  console.log(liked);
   console.log(post);
-  res.render("postDetail", { pageTitle: post.title, post });
+  res.render("postDetail", { pageTitle: post.title, post, liked });
 };
 
 export const getAddPost = (req, res) => {
@@ -79,6 +81,29 @@ export const postAddComment = async (req, res) => {
     post.comments.push(comment);
     post.save();
     res.json(comment);
+  } catch (error) {
+    res.status(400);
+    console.log(error);
+  } finally {
+    res.end();
+  }
+};
+
+export const postToggleLike = async (req, res) => {
+  const {
+    params: { id },
+    user,
+  } = req;
+  try {
+    const post = await Post.findById(id);
+    const likes = Post.toggleLike(user._id, post.likes);
+    await post.updateOne({
+      likes,
+    });
+    const liked = Post.isLiked(user._id, likes);
+    user.likesPosts = Post.toggleLike(post._id, user.likesPosts);
+    user.save();
+    res.send(liked);
   } catch (error) {
     res.status(400);
     console.log(error);

@@ -9,3 +9,4 @@ import "./timer";
 import "./workOutStart";
 import "./preview";
 import "./addComment";
+import "./toggleLike";

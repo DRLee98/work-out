@@ -23,6 +23,12 @@ const UserSchema = new mongoose.Schema({
       ref: "Post",
     },
   ],
+  likesPosts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
   completeDates: [
     {
       type: mongoose.Schema.Types.ObjectId,

@@ -17,8 +17,8 @@ block content
             p=post.contents
         +postImgList(false, post.imageUrls)
         .likes-box
-            span.like-count=post.likes.length
-            button.like-btn 
+            span#jsLikeCount.like-count=post.likes.length
+            button#jsLikeBtn(class=`like-btn ${liked ? "liked" : ""}`) 
                 i.far.fa-thumbs-up
         .comment-box
             strong.comment-title 댓글 

@@ -36,5 +36,17 @@ const PostSchema = new mongoose.Schema({
   ],
 });
 
+PostSchema.static("isLiked", (id, list = []) => list.includes(id));
+
+PostSchema.static("toggleLike", (id, list = []) => {
+  const isLiked = list.includes(id);
+  if (isLiked) {
+    list = list.filter((item) => item.toString() !== id.toString());
+  } else {
+    list.push(id);
+  }
+  return list;
+});
+
 const model = mongoose.model("Post", PostSchema);
 export default model;

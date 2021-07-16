@@ -1,5 +1,5 @@
 import express from "express";
-import { postAddComment } from "../controllers/postController";
+import { postAddComment, postToggleLike } from "../controllers/postController";
 import {
   postAddWorkOut,
   postEditWorkOut,
@@ -16,5 +16,6 @@ apiRouter.post(routes.editWorkOut, postEditWorkOut);
 apiRouter.post(routes.deleteWorkOut, postDeleteWorkOut);
 apiRouter.post(routes.changeOrder, postChangeOrder);
 apiRouter.post(routes.addComment(), onlyPrivate, postAddComment);
+apiRouter.post(routes.likePost(), onlyPrivate, postToggleLike);
 
 export default apiRouter;

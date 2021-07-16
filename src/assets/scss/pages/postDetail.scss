@@ -59,6 +59,13 @@
         background-color: rgba(0, 184, 255, 80%);
         color: #ffffff;
       }
+      &.liked {
+        color: rgba(0, 184, 255, 80%);
+        &:hover {
+          background-color: rgba(88, 88, 88, 0.8);
+          color: #ffffff;
+        }
+      }
     }
   }
   .comment-box {
