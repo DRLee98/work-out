@@ -22,6 +22,7 @@ const POST = "/post";
 const POST_DETAIL = "/:id";
 const ADD_POST = "/add-post";
 const EDIT_POST = "/:id/edit-post";
+const DELETE_POST = "/:id/delete-post";
 
 //API
 const API = "/api";
@@ -29,7 +30,6 @@ const ADD_WORKOUT = "/add-item";
 const EDIT_WORKOUT = "/:id/edit";
 const DELETE_WORKOUT = "/:id/delete";
 const CHANGE_ORDER = "/:id/change-order";
-const DELETE_POST = "/:id/delete";
 const LIKE_POST = "/:id/like";
 const ADD_COMMENT = "/:id/add-comment";
 
@@ -80,7 +80,13 @@ const routes = {
   },
   addPost: ADD_POST,
   editPost: EDIT_POST,
-  deletePost: DELETE_POST,
+  deletePost: (id) => {
+    if (id) {
+      return `/post/${id}/delete-post`;
+    } else {
+      return DELETE_POST;
+    }
+  },
   likePost: (id) => {
     if (id) {
       return `/api/${id}/like`;

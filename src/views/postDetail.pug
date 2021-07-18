@@ -11,6 +11,8 @@ block content
                     h3=post.creator.name
                     h4=post.creator.email
             .post-info 
+                if post.creator._id.toString() === loggedUser._id.toString()
+                    a(href=routes.deletePost(post._id)) 게시글 삭제하기
                 h3 조회수: #{post.views}
                 h4 작성일: #{new Date(post.createdAt).toLocaleString('ko-KR', {  hour12: false })}
         .contents-box

@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getAddPost,
+  getDeletePost,
   getPostDetail,
   getPosts,
   postAddPost,
@@ -22,5 +23,6 @@ postRouter.post(
 );
 
 postRouter.get(routes.postDetail(), onlyPrivate, getPostDetail);
+postRouter.get(routes.deletePost(), onlyPrivate, getDeletePost);
 
 export default postRouter;

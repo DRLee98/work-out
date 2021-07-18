@@ -22,4 +22,30 @@ export const upload = multer({
   }),
 });
 
+export const deleteFile = async (url) => {
+  if (url) {
+    const Key = url.split("amazonaws.com/")[1];
+    aws.config.update({
+      credentials: {
+        accessKeyId: process.env.AWS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_KEY,
+      },
+    });
+    await new aws.S3()
+      .deleteObject(
+        {
+          Bucket: BUCKET,
+          Key,
+        },
+        (err, data) => {
+          if (err) {
+            throw err;
+          }
+          return { ok: true };
+        },
+      )
+      .promise();
+  }
+};
+
 export const profileUpload = () => upload.single("profile");

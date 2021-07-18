@@ -1,6 +1,11 @@
 import routes from "../routes";
 import Post from "../models/Post";
 import Comment from "../models/Comment";
+import { deleteFile } from "../upload";
+
+const filterList = (id, list = []) => {
+  return list.filter((item) => item.toString() !== id.toString());
+};
 
 export const getPosts = async (req, res) => {
   const {
@@ -33,10 +38,10 @@ export const getPosts = async (req, res) => {
 
 export const getPostDetail = async (req, res) => {
   const {
-    params: { id: _id },
+    params: { id },
     user: { _id: userId },
   } = req;
-  const post = await Post.findById({ _id })
+  const post = await Post.findById(id)
     .populate({ path: "creator", select: ["name", "email", "avatarUrl"] })
     .populate({
       path: "comments",
@@ -46,7 +51,7 @@ export const getPostDetail = async (req, res) => {
   post.views = post.views + 1;
   post.save();
   const liked = await Post.isLiked(userId, post.likes);
-  console.log(liked);
+  // console.log(liked);
   console.log(post);
   res.render("postDetail", { pageTitle: post.title, post, liked });
 };
@@ -82,6 +87,35 @@ export const postAddPost = async (req, res) => {
     res.status(400);
     console.log(error);
     return res.redirect(routes.post + routes.addPost);
+  }
+};
+
+export const getDeletePost = async (req, res) => {
+  const {
+    params: { id },
+    user,
+  } = req;
+  try {
+    const post = await Post.findById(id).populate("creator").populate("likes");
+    console.log(post);
+    console.log(post.creator._id.toString() !== user._id.toString());
+    if (post.creator._id.toString() !== user._id.toString()) {
+      throw Error;
+    }
+    await Comment.deleteMany({ post });
+    post.creator.posts = filterList(id, post.creator.posts);
+    await post.creator.save();
+    post.likes.forEach(async (likeUser) => {
+      await likeUser.updateOne({
+        likesPosts: filterList(id, likeUser.likesPosts),
+      });
+    });
+    post.imageUrls.forEach(async (url) => await deleteFile(url));
+    await Post.deleteOne(post);
+    return res.redirect(routes.post);
+  } catch (error) {
+    console.log(error);
+    return res.redirect(routes.postDetail(id));
   }
 };
 
