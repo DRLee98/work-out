@@ -3,12 +3,32 @@ import Post from "../models/Post";
 import Comment from "../models/Comment";
 
 export const getPosts = async (req, res) => {
+  const {
+    query: { page, limit },
+  } = req;
+  const pageNum = page ? +page : 1;
+  const limitCount = limit ? +limit : 20;
+  const skip = (pageNum - 1) * limitCount;
   const posts = await Post.find()
     .populate({ path: "creator", select: "name" })
     .populate({ path: "likes", select: "name" })
-    .sort({ createdAt: -1 });
-  console.log(posts);
-  res.render("posts", { pageTitle: "게시판", posts });
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limitCount);
+  const postCount = await Post.count();
+  const maxPage = Math.round(postCount / limitCount);
+  const pageList = [];
+  const n = maxPage < 5 ? maxPage : 5;
+  for (let i = 0; i < n; i++) {
+    if (pageNum <= 3) {
+      pageList.push(i + 1);
+    } else if (pageNum >= maxPage - 2) {
+      pageList.push(maxPage - n + i + 1);
+    } else {
+      pageList.push(pageNum + 2 - i);
+    }
+  }
+  res.render("posts", { pageTitle: "게시판", posts, pageList, pageNum, skip });
 };
 
 export const getPostDetail = async (req, res) => {
