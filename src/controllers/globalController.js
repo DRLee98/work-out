@@ -11,3 +11,7 @@ export const home = async (req, res) => {
 export const search = (req, res) => {
   res.render("search");
 };
+
+export const getCalendar = (req, res) => {
+  res.render("calendar", { pageTitle: "달력" });
+};

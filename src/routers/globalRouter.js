@@ -1,5 +1,5 @@
 import express from "express";
-import { home, search } from "../controllers/globalController";
+import { getCalendar, home, search } from "../controllers/globalController";
 import {
   getJoin,
   getLogin,
@@ -29,6 +29,6 @@ globalRouter.post(routes.login, onlyPublic, postLogin);
 
 globalRouter.get(routes.logout, logout);
 
-globalRouter.get(routes.search, search);
+globalRouter.get(routes.calendar, getCalendar);
 
 export default globalRouter;

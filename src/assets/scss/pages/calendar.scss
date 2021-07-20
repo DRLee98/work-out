@@ -1,0 +1,33 @@
+.calendar-container {
+  margin-top: 1em;
+  .this-month {
+    .this-month-text {
+      font-size: 55px;
+      text-align: center;
+    }
+    .week-list {
+      width: 50vw;
+      min-width: 500px;
+      margin-top: 1em;
+      border: 1px solid lightblue;
+    }
+    .date-list {
+      height: 120px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      &:not(:last-child) {
+        border-bottom: 1px solid lightblue;
+      }
+      li {
+        &.today {
+          color: white;
+          background-color: lightblue;
+        }
+        padding: 5px;
+        &:not(:last-child) {
+          border-right: 1px solid lightblue;
+        }
+      }
+    }
+  }
+}

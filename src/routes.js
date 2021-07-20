@@ -16,6 +16,7 @@ const WORKOUT = "/work-out";
 const DAY = "/day";
 const ADD = "/add";
 const EDIT_DAY = "/:id/day-edit";
+const CALENDAR = "/calendar";
 
 //Post
 const POST = "/post";
@@ -32,6 +33,8 @@ const DELETE_WORKOUT = "/:id/delete";
 const CHANGE_ORDER = "/:id/change-order";
 const LIKE_POST = "/:id/like";
 const ADD_COMMENT = "/:id/add-comment";
+const ADD_COMPLETE_DATE = "/add-complete-date";
+const GET_COMPLETE_DATE = "/get-complete-date";
 
 const routes = {
   home: HOME,
@@ -101,6 +104,9 @@ const routes = {
       return ADD_COMMENT;
     }
   },
+  addCompleteDate: ADD_COMPLETE_DATE,
+  getCompleteDate: GET_COMPLETE_DATE,
+  calendar: CALENDAR,
 };
 
 export default routes;

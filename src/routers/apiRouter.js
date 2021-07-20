@@ -1,6 +1,10 @@
 import express from "express";
 import { postAddComment, postToggleLike } from "../controllers/postController";
 import {
+  postAddCompleteDate,
+  postGetCompleteDate,
+} from "../controllers/userController";
+import {
   postAddWorkOut,
   postEditWorkOut,
   postDeleteWorkOut,
@@ -17,5 +21,7 @@ apiRouter.post(routes.deleteWorkOut, postDeleteWorkOut);
 apiRouter.post(routes.changeOrder, postChangeOrder);
 apiRouter.post(routes.addComment(), onlyPrivate, postAddComment);
 apiRouter.post(routes.likePost(), onlyPrivate, postToggleLike);
+apiRouter.post(routes.addCompleteDate, onlyPrivate, postAddCompleteDate);
+apiRouter.post(routes.getCompleteDate, onlyPrivate, postGetCompleteDate);
 
 export default apiRouter;

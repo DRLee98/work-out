@@ -6,7 +6,7 @@ block content
         form.user-form(method="post" enctype="multipart/form-data")
             .contents-box
                 .image-box
-                    input#profile(type="file", name="profile")
+                    input#profile(type="file", name="profile" accept=".png, .jpg, .jepg")
                     label(for="profile")
                         +profileImg()
                     span 프로필 이미지

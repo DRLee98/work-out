@@ -129,3 +129,53 @@ export const postChangePassword = async (req, res) => {
     return res.redirect(`/users/${routes.changePassword}`);
   }
 };
+
+export const postAddCompleteDate = async (req, res) => {
+  const {
+    body: { year, month, date },
+    user: { id },
+  } = req;
+  try {
+    const user = await User.findById(id);
+    const existDate = user.completeDates.find(
+      (findDate) =>
+        findDate.year === year &&
+        findDate.month === month &&
+        findDate.date === date,
+    );
+    if (existDate) {
+      return;
+    }
+    const completeDate = { year, month, date };
+    user.completeDates.push(completeDate);
+    user.save();
+  } catch (error) {
+    res.status(400);
+    console.log(error);
+  } finally {
+    res.end();
+  }
+};
+
+export const postGetCompleteDate = async (req, res) => {
+  const {
+    body: { year, month },
+    user: { id },
+  } = req;
+  try {
+    const user = await User.findById(id);
+    const findDateObj = user.completeDates.find(
+      (findDate) => findDate.year === year && findDate.month === month,
+    );
+    const dates = [];
+    findDateObj.forEach((dateObj) => {
+      dates.push(dateObj.date);
+    });
+    res.json(dates);
+  } catch (error) {
+    res.status(400);
+    console.log(error);
+  } finally {
+    res.end();
+  }
+};

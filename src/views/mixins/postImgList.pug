@@ -3,7 +3,7 @@ mixin postImgList(isForm, images)
         .hide-block
             ul.post-img-list
                 if isForm
-                    input#postImg(type="file", name="images" multiple)
+                    input#postImg(type="file" name="images" multiple accept=".png, .jpg, .jepg")
                     li
                         label.post-img-block(for="postImg")
                             i.fas.fa-plus

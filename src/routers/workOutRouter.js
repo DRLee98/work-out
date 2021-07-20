@@ -1,5 +1,10 @@
 import express from "express";
-import { getDayWorkOut, getAdd, getEditDay, postEditDay } from "../controllers/workOutController";
+import {
+  getDayWorkOut,
+  getAdd,
+  getEditDay,
+  postEditDay,
+} from "../controllers/workOutController";
 import { onlyPrivate } from "../middlewares";
 import routes from "../routes";
 

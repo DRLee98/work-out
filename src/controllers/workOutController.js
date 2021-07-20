@@ -76,7 +76,15 @@ export const postEditWorkOut = async (req, res) => {
   try {
     const workOut = await WorkOut.findById(id);
     if (user.id === workOut.creator.toString()) {
-      await WorkOut.findByIdAndUpdate(id, { name, weight, repsOrHold, count, set, breakTime, day });
+      await WorkOut.findByIdAndUpdate(id, {
+        name,
+        weight,
+        repsOrHold,
+        count,
+        set,
+        breakTime,
+        day,
+      });
     } else {
       throw Error;
     }
