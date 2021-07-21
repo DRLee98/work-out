@@ -1,5 +1,12 @@
+const viewBox = document.getElementById("jsViewContainer");
 const dateText = document.getElementById("jsThisMonth");
 const weekBox = document.getElementById("jsWeekBox");
+const prevDateText = document.getElementById("jsPrevMonth");
+const prevWeekBox = document.getElementById("jsPrevWeekBox");
+const prevBtn = document.getElementById("jsCalendarPrev");
+const nextDateText = document.getElementById("jsNextMonth");
+const nextWeekBox = document.getElementById("jsNextWeekBox");
+const nextBtn = document.getElementById("jsCalendarNext");
 
 function currentDate() {
   const currentDate = new Date();
@@ -7,6 +14,13 @@ function currentDate() {
   const month = currentDate.getMonth() + 1;
   const date = currentDate.getDate();
   return { year, month, date };
+}
+
+function formatDate(year, month) {
+  const formatDate = new Date(year, month - 1);
+  const formatYear = formatDate.getFullYear();
+  const formatMonth = formatDate.getMonth() + 1;
+  return { formatYear, formatMonth };
 }
 
 function setDate(week, year, month, date, day) {
@@ -34,13 +48,15 @@ function getWeekElement() {
   return ul;
 }
 
-function drawDates(container, year, month) {
+function drawDates(container, textElement, year, month) {
+  container.replaceChildren();
+  textElement.innerText = `${year}.${month}`;
   let week = getWeekElement();
   const lastDate = new Date(year, month, 0).getDate();
   for (let i = 1; i <= lastDate; i++) {
     const day = new Date(year, month - 1, i).getDay();
     setDate(week, year, month, i, day);
-    if (day === 6) {
+    if (day === 6 || i === lastDate) {
       container.appendChild(week);
       week = getWeekElement();
     }
@@ -48,13 +64,42 @@ function drawDates(container, year, month) {
 }
 
 function drawCalendars(year, month) {
-  dateText.innerText = `${year}.${month}`;
-  drawDates(weekBox, year, month);
+  const { formatYear: prevYear, formatMonth: prevMonth } = formatDate(
+    year,
+    month - 1,
+  );
+  const { formatYear: nextYear, formatMonth: nextMonth } = formatDate(
+    year,
+    month + 1,
+  );
+  drawDates(weekBox, dateText, year, month);
+  drawDates(prevWeekBox, prevDateText, prevYear, prevMonth);
+  drawDates(nextWeekBox, nextDateText, nextYear, nextMonth);
+}
+
+function prevMonth() {
+  viewBox.classList.add("prev");
+  setTimeout(() => {
+    const [year, month] = prevDateText.innerText.split(".");
+    drawCalendars(+year, +month);
+    viewBox.classList.remove("prev");
+  }, 300);
+}
+
+function nextMonth() {
+  viewBox.classList.add("next");
+  setTimeout(() => {
+    const [year, month] = nextDateText.innerText.split(".");
+    drawCalendars(+year, +month);
+    viewBox.classList.remove("next");
+  }, 300);
 }
 
 function setCalendar() {
   const { year, month } = currentDate();
   drawCalendars(year, month);
+  prevBtn.addEventListener("click", prevMonth);
+  nextBtn.addEventListener("click", nextMonth);
 }
 
 if (dateText && weekBox) {

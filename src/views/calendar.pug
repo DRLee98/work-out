@@ -2,6 +2,17 @@ extends layouts/main
 
 block content
     .calendar-container
-        .this-month
-            h2#jsThisMonth.this-month-text
-            #jsWeekBox.week-list
+        #jsViewContainer.view-month
+            li.prev-month.month
+                h2#jsPrevMonth.month-text
+                #jsPrevWeekBox.week-list
+            li.this-month.month
+                h2#jsThisMonth.month-text
+                #jsWeekBox.week-list
+            li.next-month.month
+                h2#jsNextMonth.month-text
+                #jsNextWeekBox.week-list
+        span#jsCalendarNext.move-btn.next
+            i.fas.fa-caret-right
+        span#jsCalendarPrev.move-btn.prev
+            i.fas.fa-caret-left

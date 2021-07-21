@@ -1,7 +1,39 @@
 .calendar-container {
+  position: relative;
   margin-top: 1em;
-  .this-month {
-    .this-month-text {
+  .view-month {
+    width: 50vw;
+    min-width: 500px;
+    min-height: 750px;
+    position: relative;
+    overflow: hidden;
+    .month {
+      position: absolute;
+      &.prev-month {
+        left: -110%;
+      }
+      &.this-month {
+        left: 0;
+      }
+      &.next-month {
+        left: 110%;
+      }
+    }
+    &.next {
+      .month {
+        transition: all 0.3s ease;
+        transform: translateX(-110%);
+      }
+    }
+    &.prev {
+      .month {
+        transition: all 0.3s ease;
+        transform: translateX(110%);
+      }
+    }
+  }
+  .month {
+    .month-text {
       font-size: 55px;
       text-align: center;
     }
@@ -12,7 +44,7 @@
       border: 1px solid lightblue;
     }
     .date-list {
-      height: 120px;
+      height: 110px;
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       &:not(:last-child) {
@@ -28,6 +60,20 @@
           border-right: 1px solid lightblue;
         }
       }
+    }
+  }
+  .move-btn {
+    position: absolute;
+    bottom: 50%;
+    transform: translateY(50%);
+    font-size: 55px;
+    padding: 0 15px;
+    cursor: pointer;
+    &.next {
+      right: -15%;
+    }
+    &.prev {
+      left: -15%;
     }
   }
 }
