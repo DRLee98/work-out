@@ -7,9 +7,9 @@ const UserSchema = new mongoose.Schema({
   avatarUrl: String,
   completeDates: [
     {
-      year: Number,
-      month: Number,
-      date: Number,
+      year: { type: Number, max: 9999 },
+      month: { type: Number, min: 1, max: 12 },
+      date: { type: Number, min: 1, max: 31 },
     },
   ],
   days: [

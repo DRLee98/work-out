@@ -1,5 +1,7 @@
 import { timerSet, timerStop } from "./timer";
 import { writeSets, eraseSets } from "./setsBox";
+import axios from "axios";
+import routes from "../../routes";
 
 const todayWorkOut = document.querySelectorAll(".day.today li");
 const homeContainer = document.getElementById("jsHome");
@@ -40,7 +42,9 @@ const eventListen = (target) => {
 };
 
 const inspectList = () => {
-  const checkList = workOutList.filter((li) => li.classList.contains("finished"));
+  const checkList = workOutList.filter((li) =>
+    li.classList.contains("finished"),
+  );
   if (workOutList.length === checkList.length) {
     return true;
   }
@@ -56,7 +60,7 @@ export const stopWorkOut = (e) => {
   }
 };
 
-export const nextWorkOut = () => {
+export const nextWorkOut = async () => {
   if (selected) {
     removeSelect(selected);
     selected.classList.add("finished");
@@ -69,8 +73,17 @@ export const nextWorkOut = () => {
       return selectWorkOut(nextSibling);
     }
     if (inspectList()) {
-      homeContainer.classList.add("finished");
-      console.log("Finished Today Work Out!");
+      const response = await axios({
+        url: `/api${routes.addCompleteDate}`,
+        method: "POST",
+      });
+      if (response.status === 200) {
+        homeContainer.classList.add("finished");
+        console.log("Finished Today Work Out!");
+      } else {
+        const error = response.data;
+        console.log(error);
+      }
     }
     selected.offsetParent.classList.remove("start");
     selected = null;

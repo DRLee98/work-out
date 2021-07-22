@@ -23,11 +23,9 @@ function addComment(comment) {
   img.src = imgUrl ? imgUrl : "/static/images/profile.png";
   name.innerText = comment.creator.name;
   contents.innerText = comment.contents;
-  createdAt.innerText = `${date.getFullYear()}-${
-    date.getMonth() + 1
-  }-${date.getDate()} ${formatNum(date.getHours())}:${formatNum(
-    date.getMinutes(),
-  )}:${formatNum(date.getSeconds())}`;
+  createdAt.innerText = new Date(comment.createdAt).toLocaleString("ko-KR", {
+    hour12: true,
+  });
   contentsBlock.append(name, contents, createdAt);
   li.append(img, contentsBlock);
   commentList.prepend(li);

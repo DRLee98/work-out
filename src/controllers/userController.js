@@ -132,11 +132,16 @@ export const postChangePassword = async (req, res) => {
 
 export const postAddCompleteDate = async (req, res) => {
   const {
-    body: { year, month, date },
     user: { id },
   } = req;
   try {
     const user = await User.findById(id);
+    user.completeDates = [];
+    const dateList = new Date().toLocaleDateString().split("-");
+    const [year, month, date] = dateList.map((item) => parseInt(item));
+    const completeDate = { year, month, date };
+    console.log(dateList);
+    console.log(completeDate);
     const existDate = user.completeDates.find(
       (findDate) =>
         findDate.year === year &&
@@ -146,11 +151,11 @@ export const postAddCompleteDate = async (req, res) => {
     if (existDate) {
       return;
     }
-    const completeDate = { year, month, date };
     user.completeDates.push(completeDate);
-    user.save();
+    await user.save();
+    console.log(user);
   } catch (error) {
-    res.status(400);
+    res.status(400).json(error);
     console.log(error);
   } finally {
     res.end();

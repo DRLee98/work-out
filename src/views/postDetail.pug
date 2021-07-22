@@ -14,7 +14,7 @@ block content
                 if post.creator._id.toString() === loggedUser._id.toString()
                     a(href=routes.deletePost(post._id)) 게시글 삭제하기
                 h3 조회수: #{post.views}
-                h4 작성일: #{new Date(post.createdAt).toLocaleString('ko-KR', {  hour12: false })}
+                h4 작성일: #{new Date(post.createdAt).toLocaleString('ko-KR', {  hour12: true })}
         .contents-box
             p=post.contents
         +postImgList(false, post.imageUrls)
@@ -36,4 +36,4 @@ block content
                         .comment-contents 
                             span=comment.creator.name
                             p=comment.contents
-                            small=new Date(comment.createdAt).toLocaleString('ko-KR', {  hour12: false })
+                            small=new Date(comment.createdAt).toLocaleString('ko-KR', {  hour12: true })
