@@ -16,7 +16,7 @@ const PostSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: () => Date.now("ko"),
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,

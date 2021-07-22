@@ -7,16 +7,18 @@ const DaySchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: () => Date.now("ko"),
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  workOuts: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "WorkOut",
-  }]
+  workOuts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "WorkOut",
+    },
+  ],
 });
 
 const model = mongoose.model("Day", DaySchema);
