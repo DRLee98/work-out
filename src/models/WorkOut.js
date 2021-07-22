@@ -27,7 +27,7 @@ const WorkOutSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: () => Date.now("ko"),
+    default: Date.now,
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
