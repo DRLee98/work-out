@@ -28,7 +28,7 @@ const removeSelect = (target) => {
   target.removeEventListener("dblclick", stopWorkOut);
 };
 
-const handleStart = (e) => {
+export const handleStart = (e) => {
   if (!selected) {
     const { target } = e;
     selectWorkOut(target);

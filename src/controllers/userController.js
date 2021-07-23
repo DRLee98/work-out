@@ -136,7 +136,6 @@ export const postAddCompleteDate = async (req, res) => {
   } = req;
   try {
     const user = await User.findById(id);
-    user.completeDates = [];
     const dateList = new Date().toLocaleDateString().split("-");
     const [year, month, date] = dateList.map((item) => parseInt(item));
     const completeDate = { year, month, date };
@@ -164,21 +163,28 @@ export const postAddCompleteDate = async (req, res) => {
 
 export const postGetCompleteDate = async (req, res) => {
   const {
-    body: { year, month },
+    body: { year, month, onlyThisMonth },
     user: { id },
   } = req;
   try {
     const user = await User.findById(id);
-    const findDateObj = user.completeDates.find(
-      (findDate) => findDate.year === year && findDate.month === month,
-    );
-    const dates = [];
-    findDateObj.forEach((dateObj) => {
-      dates.push(dateObj.date);
-    });
-    res.json(dates);
+    let dateObj;
+    if (onlyThisMonth) {
+      dateObj = user.completeDates.filter(
+        (findDate) => findDate.year === +year && findDate.month === +month,
+      );
+    } else {
+      dateObj = user.completeDates.filter(
+        (findDate) =>
+          findDate.year === +year &&
+          findDate.month >= +month - 1 &&
+          findDate.month <= +month + 1,
+      );
+    }
+    res.json(dateObj);
   } catch (error) {
     res.status(400);
+    res.json(error);
     console.log(error);
   } finally {
     res.end();

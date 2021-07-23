@@ -1,3 +1,6 @@
+import axios from "axios";
+import routes from "../../routes";
+
 const viewBox = document.getElementById("jsViewContainer");
 const dateText = document.getElementById("jsThisMonth");
 const weekBox = document.getElementById("jsWeekBox");
@@ -7,6 +10,8 @@ const prevBtn = document.getElementById("jsCalendarPrev");
 const nextDateText = document.getElementById("jsNextMonth");
 const nextWeekBox = document.getElementById("jsNextWeekBox");
 const nextBtn = document.getElementById("jsCalendarNext");
+
+let dateList = [];
 
 function currentDate() {
   const currentDate = new Date();
@@ -23,19 +28,48 @@ function formatDate(year, month) {
   return { formatYear, formatMonth };
 }
 
+async function getCompleteDate(year, month) {
+  const response = await axios({
+    url: `/api${routes.getCompleteDate}`,
+    method: "POST",
+    data: {
+      year,
+      month,
+    },
+  });
+  if (response.status === 200) {
+    console.log(response.data);
+    dateList = response.data;
+    drawDates(weekBox, dateText, year, month);
+  } else {
+    const error = response.data;
+    console.log(error);
+  }
+}
+
 function setDate(week, year, month, date, day) {
   const dateStr = document.createElement("span");
   const dayElements = week.querySelectorAll("li");
   const li = dayElements[day];
   const { year: cYear, month: cMonth, date: cDate } = currentDate();
-  dateStr.innerText = date;
   if (cYear === year && cMonth === month && cDate === date) {
     li.classList.add("today");
   }
-  li.id = `${year}${month > 9 ? month : `0${month}`}${
-    date > 9 ? date : `0${date}`
-  }`;
+  dateStr.innerText = date;
   li.appendChild(dateStr);
+  const isCompleteDate = Boolean(
+    dateList.find(
+      (findDate) =>
+        findDate.year === year &&
+        findDate.month === month &&
+        findDate.date === date,
+    ),
+  );
+  if (isCompleteDate) {
+    const icon = document.createElement("i");
+    icon.className = "fas fa-check-circle";
+    li.appendChild(icon);
+  }
 }
 
 function getWeekElement() {
@@ -63,7 +97,8 @@ function drawDates(container, textElement, year, month) {
   }
 }
 
-function drawCalendars(year, month) {
+async function drawCalendars(year, month) {
+  getCompleteDate(year, month);
   const { formatYear: prevYear, formatMonth: prevMonth } = formatDate(
     year,
     month - 1,
