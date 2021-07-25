@@ -42,7 +42,6 @@ export const postAddWorkOut = async (req, res) => {
     user.workOuts.push(newWorkOut.id);
     workOutDay.save();
     user.save();
-    req.flash("success", `${name} 운동이 추가 되었습니다`);
   } catch (error) {
     res.status(400);
     console.log(error);
@@ -61,6 +60,7 @@ export const getEditDay = async (req, res) => {
   if (user.id === days.creator.toString()) {
     res.render("editWorkOut", { pageTitle: "운동 수정하기", days });
   } else {
+    req.flash("error", "해당 날짜의 운동이 존재하지 않습니다");
     res.redirect(`/work-out${routes.day}`);
   }
 };
@@ -104,6 +104,7 @@ export const postDeleteWorkOut = async (req, res) => {
   } = req;
   try {
     const workOut = await WorkOut.findById(id).populate("day");
+    const { name } = workOut;
     if (user.id === workOut.creator.toString()) {
       const {
         day: { workOuts, id: dayId },
@@ -113,12 +114,11 @@ export const postDeleteWorkOut = async (req, res) => {
       await User.findByIdAndUpdate(user.id, { workOuts: updateUser });
       await Day.findByIdAndUpdate(dayId, { workOuts: updateDay });
       await WorkOut.findByIdAndRemove(id);
-      req.flash("success", "운동이 성공적으로 삭제되었습니다.");
+      res.send(name);
     } else {
       throw Error;
     }
   } catch (error) {
-    req.flash("error", "운동 삭제에 실패하였습니다.");
     console.log(error);
     res.status(400);
   } finally {
@@ -137,12 +137,10 @@ export const postChangeOrder = async (req, res) => {
     const day = await Day.findById(id);
     if (user.id === day.creator.toString()) {
       await Day.findByIdAndUpdate(id, { workOuts });
-      req.flash("success", "운동 순서가 성공적으로 변경되었습니다.");
     } else {
       throw Error;
     }
   } catch (error) {
-    req.flash("error", "운동 순서 변경을 실패하였습니다.");
     console.log(error);
     res.status(400);
   } finally {

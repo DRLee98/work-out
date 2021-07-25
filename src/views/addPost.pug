@@ -8,6 +8,4 @@ block content
                 input(type="text", name="title", placeholder="제목", required=true)
                 textarea(name="contents", placeholder="내용", required=true)
             +postImgList(true)
-            if messages.error
-                .errorMsg=messages.error
             input(type="submit", value="게시글 만들기")

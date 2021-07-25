@@ -15,11 +15,11 @@ export const postJoin = async (req, res, next) => {
   if (password !== password2) {
     req.flash("error", "비밀번호가 일치하지 않습니다.");
     res.status(400);
-    res.render("join", { pageTitle: "회원가입" });
+    res.redirect("/join");
   } else if (user) {
     req.flash("error", "이미 가입된 이메일입니다.");
     res.status(400);
-    res.render("join", { pageTitle: "회원가입" });
+    res.redirect("/join");
   } else {
     try {
       user = await User({
@@ -100,6 +100,7 @@ export const postEditProfile = async (req, res) => {
       }
       await req.user.changePassword(oldPassword, newPassword);
     }
+    req.flash("success", "회원정보가 성공적으로 변경되었습니다!");
     return res.redirect(`/users/${id}`);
   } catch (error) {
     req.flash("error", "기존 비밀번호가 일치하지 않습니다.");

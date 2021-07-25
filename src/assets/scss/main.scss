@@ -30,3 +30,100 @@ img.profile-image {
   border-radius: 999px;
   background-color: gray;
 }
+
+.message {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  transform: translateY(-100%);
+  opacity: 0;
+  span {
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  &.error {
+    span {
+      background-color: #ea392c;
+    }
+  }
+  &.success {
+    span {
+      background-color: #23af38;
+    }
+  }
+  animation: messageAni 5s 0.3s ease-in-out forwards;
+}
+
+@keyframes messageAni {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.msgBox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  opacity: 0;
+  z-index: -1;
+  span {
+    padding: 10px;
+    border-radius: 10px;
+  }
+  &.show {
+    animation: showMsg 3s ease-in-out forwards;
+    &.success span {
+      color: #0093c4;
+      background-color: #def6fb7d;
+    }
+    &.error span {
+      color: #ea392c;
+      background-color: #def6fb7d;
+    }
+  }
+}
+
+@keyframes showMsg {
+  0% {
+    opacity: 0;
+    z-index: 1;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0;
+    z-index: 1;
+  }
+  100% {
+    z-index: -1;
+  }
+}

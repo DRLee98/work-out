@@ -1,3 +1,5 @@
+include ../mixins/message
+
 doctype html
 html
     head
@@ -6,6 +8,10 @@ html
         title #{siteName} #{pageTitle ? ` | ${pageTitle}` : ""}
         link(rel="stylesheet", href="/static/styles.css")
     body
+        if messages.error
+            +message("error", messages.error)
+        if messages.success
+            +message("success", messages.success)
         include ../partials/header
         main
             h1.title #{pageTitle ? pageTitle : "오늘의 운동"} 

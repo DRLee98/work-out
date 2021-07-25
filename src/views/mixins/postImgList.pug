@@ -14,4 +14,7 @@ mixin postImgList(isForm, images)
                             a(href=imageUrl, target="_blank")
                                 img.post-img-block(src=imageUrl)
 
-        include ../partials/postImgBtn
+        button#post-img-right.right-btn.hide
+            i.fas.fa-chevron-right
+        button#post-img-left.left-btn.hide
+            i.fas.fa-chevron-left

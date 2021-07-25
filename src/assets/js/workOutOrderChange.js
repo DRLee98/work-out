@@ -4,7 +4,7 @@ const container = document.querySelector(".day-container.edit");
 const upBtns = document.querySelectorAll(".upBtn");
 const downBtns = document.querySelectorAll(".downBtn");
 const saveBtn = document.getElementById("jsSaveOrder");
-const saveMsg = document.getElementById("jsSaveMsg");
+const saveMsg = document.getElementById("jsMsg");
 
 let lists;
 
@@ -62,10 +62,18 @@ const handleSave = async () => {
       workOuts: workOutId,
     },
   });
+  const msgText = saveMsg.querySelector("span");
   if (response.status === 200) {
-    saveMsg.classList.add("show");
+    msgText.innerText = "운동 순서가 변경되었습니다!";
+    saveMsg.classList.add("show", "success");
     setTimeout(() => {
-      saveMsg.classList.remove("show");
+      saveMsg.classList.remove("show", "success");
+    }, 3000);
+  } else {
+    msgText.innerText = "운동 순서 변경을 실패하였습니다.";
+    saveMsg.classList.add("show", "error");
+    setTimeout(() => {
+      saveMsg.classList.remove("show", "error");
     }, 3000);
   }
 };

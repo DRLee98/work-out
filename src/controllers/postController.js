@@ -81,6 +81,7 @@ export const postAddPost = async (req, res) => {
     });
     user.posts.push(post);
     user.save();
+    req.flash("success", "게시글이 성공적으로 작성 되었습니다.");
     return res.redirect(routes.post);
   } catch (error) {
     req.flash("error", "게시글 작성에 실패했습니다.");
@@ -112,8 +113,10 @@ export const getDeletePost = async (req, res) => {
     });
     post.imageUrls.forEach(async (url) => await deleteFile(url));
     await Post.deleteOne(post);
+    req.flash("success", "게시글이 성공적으로 삭제 되었습니다.");
     return res.redirect(routes.post);
   } catch (error) {
+    req.flash("error", "게시글 삭제에 실패했습니다.");
     console.log(error);
     return res.redirect(routes.postDetail(id));
   }

@@ -2,6 +2,8 @@ import axios from "axios";
 
 const addWorkOutForm = document.getElementById("jsAddWorkOut");
 const dayElement = document.querySelectorAll(".day");
+const msgBox = document.getElementById("jsMsg");
+let msgText;
 
 const daysObj = {
   mon: dayElement[0],
@@ -39,6 +41,11 @@ const addWorkOut = (workOut, box) => {
       : workOut[5].value % 60;
   li.append(name, weight, count, set, breakTime);
   box.append(li);
+  msgText.innerText = `${workOut[0].value} 운동이 성공적으로 추가 되었습니다.`;
+  msgBox.classList.add("show", "success");
+  setTimeout(() => {
+    msgBox.classList.remove("show", "success");
+  }, 3000);
 };
 
 const sendWorkOut = async (workOut, day, dayBox) => {
@@ -55,8 +62,15 @@ const sendWorkOut = async (workOut, day, dayBox) => {
       breakTime: workOut[5].value,
     },
   });
+  msgText = msgBox.querySelector("span");
   if (response.status === 200) {
     addWorkOut(workOut, dayBox);
+  } else {
+    msgText.innerText = "운동 추가에 실패하였습니다.";
+    msgBox.classList.add("show", "error");
+    setTimeout(() => {
+      msgBox.classList.remove("show", "error");
+    }, 3000);
   }
 };
 

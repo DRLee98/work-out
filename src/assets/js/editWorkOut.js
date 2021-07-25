@@ -2,6 +2,8 @@ import axios from "axios";
 
 const editBtns = document.querySelectorAll(".editBtn");
 const editWorkOutForms = document.querySelectorAll(".edit_work-out");
+const msgBox = document.getElementById("jsMsg");
+let msgText;
 
 const handleEditBtn = (e) => {
   const {
@@ -36,6 +38,11 @@ const editWorkOut = (workOut, li) => {
       ? `0${workOut[5].value % 60}`
       : workOut[5].value % 60;
   li.classList.remove("edit");
+  msgText.innerText = `${workOut[0].value} 운동 수정에 성공 하였습니다!`;
+  msgBox.classList.add("show", "error");
+  setTimeout(() => {
+    msgBox.classList.remove("show", "error");
+  }, 3000);
 };
 
 const sendEditWorkOut = async (workOut, li) => {
@@ -51,8 +58,15 @@ const sendEditWorkOut = async (workOut, li) => {
       breakTime: workOut[5].value,
     },
   });
+  msgText = msgBox.querySelector("span");
   if (response.status === 200) {
     editWorkOut(workOut, li);
+  } else {
+    msgText.innerText = "운동 수정을 실패 하였습니다.";
+    msgBox.classList.add("show", "error");
+    setTimeout(() => {
+      msgBox.classList.remove("show", "error");
+    }, 3000);
   }
 };
 
@@ -67,7 +81,7 @@ const handleEditSubmit = (e) => {
 function init() {
   editBtns.forEach((b) => b.addEventListener("click", handleEditBtn));
   editWorkOutForms.forEach((f) =>
-    f.addEventListener("submit", handleEditSubmit)
+    f.addEventListener("submit", handleEditSubmit),
   );
 }
 
