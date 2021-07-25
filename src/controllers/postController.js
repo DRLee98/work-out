@@ -143,8 +143,8 @@ export const postAddComment = async (req, res) => {
     const post = await Post.findById(id);
     const comment = await Comment.create({
       contents,
-      creator: user.id,
-      post,
+      creator: user,
+      post: post._id,
     });
     post.comments.push(comment);
     await post.save();
@@ -167,8 +167,8 @@ export const postAddReply = async (req, res) => {
     const comment = await Comment.findById(id);
     const reply = await Reply.create({
       contents,
-      creator: user.id,
-      comment,
+      creator: user,
+      comment: comment._id,
     });
     comment.replies.push(reply);
     await comment.save();
