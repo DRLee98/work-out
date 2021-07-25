@@ -1,0 +1,25 @@
+include profileImg
+
+mixin comment(comment)
+    li(data-id=comment.id)
+        .comment-box
+            +profileImg(comment.creator.avatarUrl, comment.creator.id)
+            .comment-contents 
+                span=comment.creator.name
+                    small=new Date(comment.createdAt).toLocaleString('ko-KR', {  hour12: true })
+                p=comment.contents
+                button.reply-view-btn 답글 보기
+        .reply-box.hide
+            form.reply-form
+                +profileImg(loggedUser.avatarUrl)
+                input(type="text", name="contents")
+                input(type="submit", value="답글 달기")
+            ul.replies-list
+                each reply in comment.replies 
+                    li(data-id=reply.id)
+                        +profileImg(reply.creator.avatarUrl, reply.creator.id)
+                        .reply-contents 
+                            span=reply.creator.name
+                                small=new Date(reply.createdAt).toLocaleString('ko-KR', {  hour12: true })
+                            p=reply.contents
+                            

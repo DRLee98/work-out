@@ -1,13 +1,5 @@
 import "../scss/styles.scss";
-import "./dayWorkOut";
-import "./expandWorkOut";
-import "./addWorkOut";
-import "./editWorkOut";
-import "./deleteWorkOut";
-import "./workOutOrderChange";
-import "./timer";
-import "./workOutStart";
-import "./preview";
-import "./addComment";
-import "./toggleLike";
-import "./drawCalendar";
+import "../img/favicon.png";
+import "../img/profile.png";
+
+import regeneratorRuntime from "regenerator-runtime";

@@ -33,6 +33,7 @@ const DELETE_WORKOUT = "/:id/delete";
 const CHANGE_ORDER = "/:id/change-order";
 const LIKE_POST = "/:id/like";
 const ADD_COMMENT = "/:id/add-comment";
+const ADD_REPLY = "/:id/add-reply";
 const ADD_COMPLETE_DATE = "/add-complete-date";
 const GET_COMPLETE_DATE = "/get-complete-date";
 
@@ -102,6 +103,13 @@ const routes = {
       return `/api/${id}/add-comment`;
     } else {
       return ADD_COMMENT;
+    }
+  },
+  addReply: (id) => {
+    if (id) {
+      return `/api/${id}/add-reply`;
+    } else {
+      return ADD_REPLY;
     }
   },
   addCompleteDate: ADD_COMPLETE_DATE,

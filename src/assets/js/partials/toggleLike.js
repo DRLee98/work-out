@@ -1,5 +1,5 @@
 import axios from "axios";
-import routes from "../../routes";
+import routes from "../../../routes";
 
 const likeBtn = document.getElementById("jsLikeBtn");
 const likeCount = document.getElementById("jsLikeCount");

@@ -3,18 +3,42 @@ const autoprefixer = require("autoprefixer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const MODE = process.env.WEBPACK_ENV;
-const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
-const ENTRY_FAVICON = path.resolve(__dirname, "assets", "img", "favicon.png");
-const ENTRY_PROFILE_IMG = path.resolve(
+const MAIN_JS = path.resolve(__dirname, "assets", "js", "main.js");
+const ADD_WORK_OUT_JS = path.resolve(
   __dirname,
   "assets",
-  "img",
-  "profile.png",
+  "js",
+  "addWorkOut.js",
 );
+const CALENDAR_JS = path.resolve(__dirname, "assets", "js", "calendar.js");
+const DAY_WORK_OUT_JS = path.resolve(
+  __dirname,
+  "assets",
+  "js",
+  "dayWorkOut.js",
+);
+const EDIT_WORK_OUT_JS = path.resolve(
+  __dirname,
+  "assets",
+  "js",
+  "editWorkOut.js",
+);
+const HOME_JS = path.resolve(__dirname, "assets", "js", "home.js");
+const POST_DETAIL_JS = path.resolve(__dirname, "assets", "js", "postDetail.js");
+const PREVIEW_JS = path.resolve(__dirname, "assets", "js", "preview.js");
 const OUTPUT_DIR = path.join(__dirname, "static");
 
 const config = {
-  entry: ["@babel/polyfill", ENTRY_FILE, ENTRY_FAVICON, ENTRY_PROFILE_IMG],
+  entry: {
+    main: MAIN_JS,
+    addWorkOut: ADD_WORK_OUT_JS,
+    calendar: CALENDAR_JS,
+    dayWorkOut: DAY_WORK_OUT_JS,
+    editWorkOut: EDIT_WORK_OUT_JS,
+    home: HOME_JS,
+    postDetail: POST_DETAIL_JS,
+    preview: PREVIEW_JS,
+  },
   mode: MODE,
   module: {
     rules: [

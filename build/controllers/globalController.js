@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.search = exports.home = void 0;
+exports.getCalendar = exports.search = exports.home = void 0;
 
 var _Day = _interopRequireDefault(require("../models/Day"));
 
@@ -60,3 +60,11 @@ var search = function search(req, res) {
 };
 
 exports.search = search;
+
+var getCalendar = function getCalendar(req, res) {
+  res.render("calendar", {
+    pageTitle: "달력"
+  });
+};
+
+exports.getCalendar = getCalendar;

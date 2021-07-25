@@ -38,6 +38,7 @@ export const postAddWorkOut = async (req, res) => {
       creator: user.id,
       day: workOutDay.id,
     });
+    console.log(userFindDay, workOutDay);
     workOutDay.workOuts.push(newWorkOut.id);
     user.workOuts.push(newWorkOut.id);
     workOutDay.save();
@@ -69,7 +70,7 @@ export const postEditDay = (req, res) => {};
 
 export const postEditWorkOut = async (req, res) => {
   const {
-    body: { name, weight, repsOrHold, count, set, breakTime, day },
+    body: { name, weight, repsOrHold, count, set, breakTime },
     params: { id },
     user,
   } = req;
@@ -83,7 +84,6 @@ export const postEditWorkOut = async (req, res) => {
         count,
         set,
         breakTime,
-        day,
       });
     } else {
       throw Error;
@@ -104,6 +104,7 @@ export const postDeleteWorkOut = async (req, res) => {
   } = req;
   try {
     const workOut = await WorkOut.findById(id).populate("day");
+    console.log(workOut);
     const { name } = workOut;
     if (user.id === workOut.creator.toString()) {
       const {

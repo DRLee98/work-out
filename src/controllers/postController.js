@@ -1,6 +1,7 @@
 import routes from "../routes";
 import Post from "../models/Post";
 import Comment from "../models/Comment";
+import Reply from "../models/Reply";
 import { deleteFile } from "../upload";
 
 const filterList = (id, list = []) => {
@@ -46,7 +47,13 @@ export const getPostDetail = async (req, res) => {
     .populate({
       path: "comments",
       options: { sort: { createdAt: -1 } },
-      populate: { path: "creator", select: ["name", "avatarUrl"] },
+      populate: [
+        { path: "creator", select: ["name", "avatarUrl"] },
+        {
+          path: "replies",
+          populate: { path: "creator", select: ["name", "avatarUrl"] },
+        },
+      ],
     });
   post.views = post.views + 1;
   post.save();
@@ -103,6 +110,10 @@ export const getDeletePost = async (req, res) => {
     if (post.creator._id.toString() !== user._id.toString()) {
       throw Error;
     }
+    const comments = await Comment.find({ post });
+    comments.forEach(async (comment) => {
+      await Reply.deleteMany({ comment });
+    });
     await Comment.deleteMany({ post });
     post.creator.posts = filterList(id, post.creator.posts);
     await post.creator.save();
@@ -132,12 +143,36 @@ export const postAddComment = async (req, res) => {
     const post = await Post.findById(id);
     const comment = await Comment.create({
       contents,
-      creator: user,
+      creator: user.id,
       post,
     });
     post.comments.push(comment);
-    post.save();
+    await post.save();
     res.json(comment);
+  } catch (error) {
+    res.status(400);
+    console.log(error);
+  } finally {
+    res.end();
+  }
+};
+
+export const postAddReply = async (req, res) => {
+  const {
+    body: { contents },
+    params: { id },
+    user,
+  } = req;
+  try {
+    const comment = await Comment.findById(id);
+    const reply = await Reply.create({
+      contents,
+      creator: user.id,
+      comment,
+    });
+    comment.replies.push(reply);
+    await comment.save();
+    res.json(reply);
   } catch (error) {
     res.status(400);
     console.log(error);

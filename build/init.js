@@ -1,6 +1,12 @@
 "use strict";
 
+require("@babel/polyfill");
+
 var _dotenv = _interopRequireDefault(require("dotenv"));
+
+var _moment = _interopRequireDefault(require("moment"));
+
+require("moment-timezone");
 
 require("./db");
 
@@ -12,9 +18,17 @@ require("./models/Day");
 
 require("./models/WorkOut");
 
+require("./models/Post");
+
+require("./models/Comment");
+
+require("./models/Reply");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _dotenv["default"].config();
+
+_moment["default"].tz.setDefault("Asia/Seoul");
 
 var PORT = process.env.PORT || 4000;
 

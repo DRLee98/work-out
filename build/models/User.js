@@ -12,9 +12,31 @@ var _passportLocalMongoose = _interopRequireDefault(require("passport-local-mong
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var UserSchema = new _mongoose["default"].Schema({
-  name: String,
-  email: String,
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
   avatarUrl: String,
+  completeDates: [{
+    year: {
+      type: Number,
+      max: 9999
+    },
+    month: {
+      type: Number,
+      min: 1,
+      max: 12
+    },
+    date: {
+      type: Number,
+      min: 1,
+      max: 31
+    }
+  }],
   days: [{
     type: _mongoose["default"].Schema.Types.ObjectId,
     ref: "Day"
@@ -22,6 +44,14 @@ var UserSchema = new _mongoose["default"].Schema({
   workOuts: [{
     type: _mongoose["default"].Schema.Types.ObjectId,
     ref: "WorkOut"
+  }],
+  posts: [{
+    type: _mongoose["default"].Schema.Types.ObjectId,
+    ref: "Post"
+  }],
+  likesPosts: [{
+    type: _mongoose["default"].Schema.Types.ObjectId,
+    ref: "Post"
   }]
 });
 UserSchema.plugin(_passportLocalMongoose["default"], {

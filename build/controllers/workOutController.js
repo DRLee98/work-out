@@ -150,27 +150,26 @@ var postAddWorkOut = /*#__PURE__*/function () {
             user.workOuts.push(newWorkOut.id);
             workOutDay.save();
             user.save();
-            req.flash("success", "".concat(name, " \uC6B4\uB3D9\uC774 \uCD94\uAC00 \uB418\uC5C8\uC2B5\uB2C8\uB2E4"));
-            _context3.next = 30;
+            _context3.next = 29;
             break;
 
-          case 26:
-            _context3.prev = 26;
+          case 25:
+            _context3.prev = 25;
             _context3.t0 = _context3["catch"](1);
             res.status(400);
             console.log(_context3.t0);
 
-          case 30:
-            _context3.prev = 30;
+          case 29:
+            _context3.prev = 29;
             res.end();
-            return _context3.finish(30);
+            return _context3.finish(29);
 
-          case 33:
+          case 32:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[1, 26, 30, 33]]);
+    }, _callee3, null, [[1, 25, 29, 32]]);
   }));
 
   return function postAddWorkOut(_x5, _x6) {
@@ -201,6 +200,7 @@ var getEditDay = /*#__PURE__*/function () {
                 days: days
               });
             } else {
+              req.flash("error", "해당 날짜의 운동이 존재하지 않습니다");
               res.redirect("/work-out".concat(_routes["default"].day));
             }
 
@@ -240,7 +240,7 @@ var postEditWorkOut = /*#__PURE__*/function () {
             workOut = _context5.sent;
 
             if (!(user.id === workOut.creator.toString())) {
-              _context5.next = 11;
+              _context5.next = 10;
               break;
             }
 
@@ -256,35 +256,33 @@ var postEditWorkOut = /*#__PURE__*/function () {
             });
 
           case 8:
-            req.flash("success", "운동이 성공적으로 수정되었습니다.");
-            _context5.next = 12;
+            _context5.next = 11;
             break;
 
-          case 11:
+          case 10:
             throw Error;
 
-          case 12:
-            _context5.next = 19;
+          case 11:
+            _context5.next = 17;
             break;
 
-          case 14:
-            _context5.prev = 14;
+          case 13:
+            _context5.prev = 13;
             _context5.t0 = _context5["catch"](1);
-            req.flash("error", "운동 수정에 실패하였습니다.");
             res.status(400);
             console.log(_context5.t0);
 
-          case 19:
-            _context5.prev = 19;
+          case 17:
+            _context5.prev = 17;
             res.end();
-            return _context5.finish(19);
+            return _context5.finish(17);
 
-          case 22:
+          case 20:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[1, 14, 19, 22]]);
+    }, _callee5, null, [[1, 13, 17, 20]]);
   }));
 
   return function postEditWorkOut(_x9, _x10) {
@@ -297,7 +295,7 @@ exports.postEditWorkOut = postEditWorkOut;
 
 var postDeleteWorkOut = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(req, res) {
-    var id, user, workOut, _workOut$day, workOuts, dayId, updateUser, updateDay;
+    var id, user, workOut, name, _workOut$day, workOuts, dayId, updateUser, updateDay;
 
     return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
@@ -310,9 +308,10 @@ var postDeleteWorkOut = /*#__PURE__*/function () {
 
           case 4:
             workOut = _context6.sent;
+            name = workOut.name;
 
             if (!(user.id === workOut.creator.toString())) {
-              _context6.next = 18;
+              _context6.next = 19;
               break;
             }
 
@@ -323,37 +322,36 @@ var postDeleteWorkOut = /*#__PURE__*/function () {
             updateDay = workOuts.filter(function (w) {
               return w.toString() !== id;
             });
-            _context6.next = 11;
+            _context6.next = 12;
             return _User["default"].findByIdAndUpdate(user.id, {
               workOuts: updateUser
             });
 
-          case 11:
-            _context6.next = 13;
+          case 12:
+            _context6.next = 14;
             return _Day["default"].findByIdAndUpdate(dayId, {
               workOuts: updateDay
             });
 
-          case 13:
-            _context6.next = 15;
+          case 14:
+            _context6.next = 16;
             return _WorkOut["default"].findByIdAndRemove(id);
 
-          case 15:
-            req.flash("success", "운동이 성공적으로 삭제되었습니다.");
-            _context6.next = 19;
+          case 16:
+            res.send(name);
+            _context6.next = 20;
             break;
 
-          case 18:
+          case 19:
             throw Error;
 
-          case 19:
+          case 20:
             _context6.next = 26;
             break;
 
-          case 21:
-            _context6.prev = 21;
+          case 22:
+            _context6.prev = 22;
             _context6.t0 = _context6["catch"](1);
-            req.flash("error", "운동 삭제에 실패하였습니다.");
             console.log(_context6.t0);
             res.status(400);
 
@@ -367,7 +365,7 @@ var postDeleteWorkOut = /*#__PURE__*/function () {
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[1, 21, 26, 29]]);
+    }, _callee6, null, [[1, 22, 26, 29]]);
   }));
 
   return function postDeleteWorkOut(_x11, _x12) {
@@ -394,7 +392,7 @@ var postChangeOrder = /*#__PURE__*/function () {
             day = _context7.sent;
 
             if (!(user.id === day.creator.toString())) {
-              _context7.next = 11;
+              _context7.next = 10;
               break;
             }
 
@@ -404,35 +402,33 @@ var postChangeOrder = /*#__PURE__*/function () {
             });
 
           case 8:
-            req.flash("success", "운동 순서가 성공적으로 변경되었습니다.");
-            _context7.next = 12;
+            _context7.next = 11;
             break;
 
-          case 11:
+          case 10:
             throw Error;
 
-          case 12:
-            _context7.next = 19;
+          case 11:
+            _context7.next = 17;
             break;
 
-          case 14:
-            _context7.prev = 14;
+          case 13:
+            _context7.prev = 13;
             _context7.t0 = _context7["catch"](1);
-            req.flash("error", "운동 순서 변경을 실패하였습니다.");
             console.log(_context7.t0);
             res.status(400);
 
-          case 19:
-            _context7.prev = 19;
+          case 17:
+            _context7.prev = 17;
             res.end();
-            return _context7.finish(19);
+            return _context7.finish(17);
 
-          case 22:
+          case 20:
           case "end":
             return _context7.stop();
         }
       }
-    }, _callee7, null, [[1, 14, 19, 22]]);
+    }, _callee7, null, [[1, 13, 17, 20]]);
   }));
 
   return function postChangeOrder(_x13, _x14) {

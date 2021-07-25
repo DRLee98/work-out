@@ -1,6 +1,7 @@
 extends layouts/main
 include mixins/profileImg
 include mixins/postImgList
+include mixins/comment
 
 block content
     .post.post-container
@@ -31,9 +32,8 @@ block content
                 input(type="submit", value="댓글 달기")
             ul.comment-list
                 each comment in post.comments 
-                    li 
-                        +profileImg(comment.creator.avatarUrl, comment.creator.id)
-                        .comment-contents 
-                            span=comment.creator.name
-                            p=comment.contents
-                            small=new Date(comment.createdAt).toLocaleString('ko-KR', {  hour12: true })
+                    +comment(comment)
+
+
+block script
+    script(src="/static/postDetail.js")

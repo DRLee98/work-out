@@ -9,6 +9,8 @@ var _express = _interopRequireDefault(require("express"));
 
 var _helmet = _interopRequireDefault(require("helmet"));
 
+var _helmetCsp = _interopRequireDefault(require("helmet-csp"));
+
 var _cookieParser = _interopRequireDefault(require("cookie-parser"));
 
 var _bodyParser = _interopRequireDefault(require("body-parser"));
@@ -39,11 +41,20 @@ var _apiRouter = _interopRequireDefault(require("./routers/apiRouter"));
 
 require("./passport");
 
+var _postRouter = _interopRequireDefault(require("./routers/postRouter"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
 var CookieStore = (0, _connectMongo["default"])(_expressSession["default"]);
 app.use((0, _helmet["default"])());
+app.use((0, _helmetCsp["default"])({
+  useDefaults: true,
+  directives: {
+    imgSrc: ["'self'", "data:", "*"],
+    scriptSrc: ["'self'"]
+  }
+}));
 app.set("view engine", "pug");
 app.set("views", _path["default"].join(__dirname, "views"));
 app.use("/static", _express["default"]["static"](_path["default"].join(__dirname, "static")));
@@ -68,5 +79,6 @@ app.use(_routes["default"].home, _globalRouter["default"]);
 app.use(_routes["default"].users, _userRouter["default"]);
 app.use(_routes["default"].workOut, _workOutRouter["default"]);
 app.use(_routes["default"].api, _apiRouter["default"]);
+app.use(_routes["default"].post, _postRouter["default"]);
 var _default = app;
 exports["default"] = _default;

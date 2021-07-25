@@ -1,9 +1,9 @@
 import { timerSet, timerStop } from "./timer";
 import { writeSets, eraseSets } from "./setsBox";
 import axios from "axios";
-import routes from "../../routes";
+import routes from "../../../routes";
+import { setToday } from "./dayWorkOut";
 
-const todayWorkOut = document.querySelectorAll(".day.today li");
 const homeContainer = document.getElementById("jsHome");
 
 let selected;
@@ -91,9 +91,11 @@ export const nextWorkOut = async () => {
 };
 
 const init = () => {
+  setToday();
+  const todayWorkOut = document.querySelectorAll(".day.today li");
   todayWorkOut.forEach((li) => eventListen(li));
 };
 
-if (todayWorkOut) {
+if (homeContainer) {
   init();
 }

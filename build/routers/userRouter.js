@@ -13,11 +13,14 @@ var _middlewares = require("../middlewares");
 
 var _routes = _interopRequireDefault(require("../routes"));
 
+var _upload = require("../upload");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var userRouter = _express["default"].Router();
 
-userRouter.get(_routes["default"].editProfile, _middlewares.onlyPrivate, _userController.editProfile);
+userRouter.get(_routes["default"].editProfile(), _middlewares.onlyPrivate, _userController.getEditProfile);
+userRouter.post(_routes["default"].editProfile(), _upload.upload.single("profile"), _middlewares.onlyPrivate, _userController.postEditProfile);
 userRouter.get(_routes["default"].changePassword, _middlewares.onlyPrivate, _userController.getChangePassword);
 userRouter.post(_routes["default"].changePassword, _middlewares.onlyPrivate, _userController.postChangePassword);
 userRouter.get(_routes["default"].userDetail(), _userController.userDetail);

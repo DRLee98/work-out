@@ -1,5 +1,9 @@
 import express from "express";
-import { postAddComment, postToggleLike } from "../controllers/postController";
+import {
+  postAddComment,
+  postAddReply,
+  postToggleLike,
+} from "../controllers/postController";
 import {
   postAddCompleteDate,
   postGetCompleteDate,
@@ -20,6 +24,7 @@ apiRouter.post(routes.editWorkOut, postEditWorkOut);
 apiRouter.post(routes.deleteWorkOut, postDeleteWorkOut);
 apiRouter.post(routes.changeOrder, postChangeOrder);
 apiRouter.post(routes.addComment(), onlyPrivate, postAddComment);
+apiRouter.post(routes.addReply(), onlyPrivate, postAddReply);
 apiRouter.post(routes.likePost(), onlyPrivate, postToggleLike);
 apiRouter.post(routes.addCompleteDate, onlyPrivate, postAddCompleteDate);
 apiRouter.post(routes.getCompleteDate, onlyPrivate, postGetCompleteDate);
