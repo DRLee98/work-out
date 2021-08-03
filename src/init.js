@@ -5,7 +5,6 @@ import "./db";
 import app from "./app";
 
 dotenv.config();
-
 moment.tz.setDefault("Asia/Seoul");
 
 import "./models/User";
