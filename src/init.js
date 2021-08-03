@@ -6,7 +6,7 @@ import app from "./app";
 
 dotenv.config();
 
-moment.tz.setDefault(moment.tz.guess());
+moment.tz.setDefault("Asia/Seoul");
 
 import "./models/User";
 import "./models/Day";
