@@ -50,4 +50,5 @@ PostSchema.static("toggleLike", (id, list = []) => {
 });
 
 const model = mongoose.model("Post", PostSchema);
+
 export default model;

@@ -41,4 +41,5 @@ const WorkOutSchema = new mongoose.Schema({
 });
 
 const model = mongoose.model("WorkOut", WorkOutSchema);
+
 export default model;
