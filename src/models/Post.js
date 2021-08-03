@@ -17,7 +17,7 @@ const PostSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: () => moment(new Date()).format(),
+    default: () => Date.now() + 9 * 60 * 60 * 1000,
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
