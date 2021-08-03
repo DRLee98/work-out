@@ -1,11 +1,12 @@
 import "@babel/polyfill";
 import dotenv from "dotenv";
 import moment from "moment-timezone";
-import "./db";
-import app from "./app";
 
 dotenv.config();
 moment.tz.setDefault("Asia/Seoul");
+
+import "./db";
+import app from "./app";
 
 import "./models/User";
 import "./models/Day";
