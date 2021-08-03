@@ -137,10 +137,10 @@ export const postAddCompleteDate = async (req, res) => {
   } = req;
   try {
     const user = await User.findById(id);
-    const dateList = new Date().toLocaleDateString().split("-");
-    const [year, month, date] = dateList.map((item) => parseInt(item));
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1;
+    const date = new Date().getDate();
     const completeDate = { year, month, date };
-    console.log(dateList);
     console.log(completeDate);
     const existDate = user.completeDates.find(
       (findDate) =>

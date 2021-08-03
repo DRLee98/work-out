@@ -146,30 +146,31 @@ var postAddWorkOut = /*#__PURE__*/function () {
 
           case 18:
             newWorkOut = _context3.sent;
+            console.log(userFindDay, workOutDay);
             workOutDay.workOuts.push(newWorkOut.id);
             user.workOuts.push(newWorkOut.id);
             workOutDay.save();
             user.save();
-            _context3.next = 29;
+            _context3.next = 30;
             break;
 
-          case 25:
-            _context3.prev = 25;
+          case 26:
+            _context3.prev = 26;
             _context3.t0 = _context3["catch"](1);
             res.status(400);
             console.log(_context3.t0);
 
-          case 29:
-            _context3.prev = 29;
+          case 30:
+            _context3.prev = 30;
             res.end();
-            return _context3.finish(29);
+            return _context3.finish(30);
 
-          case 32:
+          case 33:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[1, 25, 29, 32]]);
+    }, _callee3, null, [[1, 26, 30, 33]]);
   }));
 
   return function postAddWorkOut(_x5, _x6) {
@@ -225,13 +226,13 @@ exports.postEditDay = postEditDay;
 
 var postEditWorkOut = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res) {
-    var _req$body2, name, weight, repsOrHold, count, set, breakTime, day, id, user, workOut;
+    var _req$body2, name, weight, repsOrHold, count, set, breakTime, id, user, workOut;
 
     return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            _req$body2 = req.body, name = _req$body2.name, weight = _req$body2.weight, repsOrHold = _req$body2.repsOrHold, count = _req$body2.count, set = _req$body2.set, breakTime = _req$body2.breakTime, day = _req$body2.day, id = req.params.id, user = req.user;
+            _req$body2 = req.body, name = _req$body2.name, weight = _req$body2.weight, repsOrHold = _req$body2.repsOrHold, count = _req$body2.count, set = _req$body2.set, breakTime = _req$body2.breakTime, id = req.params.id, user = req.user;
             _context5.prev = 1;
             _context5.next = 4;
             return _WorkOut["default"].findById(id);
@@ -251,8 +252,7 @@ var postEditWorkOut = /*#__PURE__*/function () {
               repsOrHold: repsOrHold,
               count: count,
               set: set,
-              breakTime: breakTime,
-              day: day
+              breakTime: breakTime
             });
 
           case 8:
@@ -308,10 +308,11 @@ var postDeleteWorkOut = /*#__PURE__*/function () {
 
           case 4:
             workOut = _context6.sent;
+            console.log(workOut);
             name = workOut.name;
 
             if (!(user.id === workOut.creator.toString())) {
-              _context6.next = 19;
+              _context6.next = 20;
               break;
             }
 
@@ -322,50 +323,50 @@ var postDeleteWorkOut = /*#__PURE__*/function () {
             updateDay = workOuts.filter(function (w) {
               return w.toString() !== id;
             });
-            _context6.next = 12;
+            _context6.next = 13;
             return _User["default"].findByIdAndUpdate(user.id, {
               workOuts: updateUser
             });
 
-          case 12:
-            _context6.next = 14;
+          case 13:
+            _context6.next = 15;
             return _Day["default"].findByIdAndUpdate(dayId, {
               workOuts: updateDay
             });
 
-          case 14:
-            _context6.next = 16;
+          case 15:
+            _context6.next = 17;
             return _WorkOut["default"].findByIdAndRemove(id);
 
-          case 16:
+          case 17:
             res.send(name);
-            _context6.next = 20;
+            _context6.next = 21;
             break;
-
-          case 19:
-            throw Error;
 
           case 20:
-            _context6.next = 26;
+            throw Error;
+
+          case 21:
+            _context6.next = 27;
             break;
 
-          case 22:
-            _context6.prev = 22;
+          case 23:
+            _context6.prev = 23;
             _context6.t0 = _context6["catch"](1);
             console.log(_context6.t0);
             res.status(400);
 
-          case 26:
-            _context6.prev = 26;
+          case 27:
+            _context6.prev = 27;
             res.end();
-            return _context6.finish(26);
+            return _context6.finish(27);
 
-          case 29:
+          case 30:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[1, 22, 26, 29]]);
+    }, _callee6, null, [[1, 23, 27, 30]]);
   }));
 
   return function postDeleteWorkOut(_x11, _x12) {

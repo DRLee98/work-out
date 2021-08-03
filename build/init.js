@@ -4,9 +4,7 @@ require("@babel/polyfill");
 
 var _dotenv = _interopRequireDefault(require("dotenv"));
 
-var _moment = _interopRequireDefault(require("moment"));
-
-require("moment-timezone");
+var _momentTimezone = _interopRequireDefault(require("moment-timezone"));
 
 require("./db");
 
@@ -28,7 +26,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 _dotenv["default"].config();
 
-_moment["default"].tz.setDefault("Asia/Seoul");
+_momentTimezone["default"].tz.setDefault("Asia/Seoul");
 
 var PORT = process.env.PORT || 4000;
 
