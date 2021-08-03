@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import moment from "moment-timezone";
+import moment from "../moment";
 
 const DaySchema = new mongoose.Schema({
   day: {
