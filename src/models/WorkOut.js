@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import moment from "moment-timezone";
 
 const WorkOutSchema = new mongoose.Schema({
   name: {
@@ -27,7 +28,7 @@ const WorkOutSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: () => moment(new Date()).format(),
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,

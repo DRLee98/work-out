@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import moment from "moment-timezone";
 
 const ReplySchema = new mongoose.Schema({
   contents: {
@@ -7,7 +8,7 @@ const ReplySchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: () => moment(new Date()).format(),
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,

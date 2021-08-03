@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import moment from "moment-timezone";
 
 const PostSchema = new mongoose.Schema({
   title: {
@@ -16,7 +17,7 @@ const PostSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: () => moment(new Date()).format(),
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
