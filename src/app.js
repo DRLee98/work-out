@@ -29,7 +29,7 @@ app.use(
     useDefaults: true,
     directives: {
       imgSrc: ["'self'", "data:", "*"],
-      scriptSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-eval'"],
     },
   }),
 );
